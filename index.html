@@ -11,6 +11,7 @@
         <nav><!-- Navegação do site-->
             <ul><!--Lista não ordenada de itens-->
                 <li><a href="#sobre">Sobre mim</a></li>
+                <li><a href="#tecnologias">Tecnologias</a></li> 
                 <li><a href="#projetos">Projetos</a></li>
                 <li><a href="#contato">Contato</a></li>
                 <li><a href="https://www.linkedin.com/in/marcio-bg" target="_blank">Linkedin</a></li>
@@ -36,6 +37,41 @@
                 <li>CSS</li>
                 <li>JavaScript</li>
             </ul>
+    </section>
+
+    <section id="tecnologias">
+        <h2>Tecnologias</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Tecnologia</th>
+                <th>Nível</th>
+                <th>Descrição</th>
+            </tr>
+            </thead>
+
+            <body>
+            <tr>
+                <td>HTML</td>
+                <td>Intermediário</td>
+                <td>Estruturação de conteúdo para páginas web.</td>
+            </tr>
+            <tr>
+                <td>CSS</td>
+                <td>Intermediário</td>
+                <td>Desenvolvimento de estilos e layouts responsivos para páginas web.</td>
+            </tr>
+            <tr>
+                <td>JavaScript</td>
+                <td>Básico</td>
+                <td>Programação para adicionar interatividade às páginas web.</td>
+            </tr>
+            </body>
+        </table>
+        
+    </section>
+
     <section id="projetos">
         <h2>Projetos</h2>
         <h3>Portifólio</h3>
@@ -52,6 +88,27 @@
     </section>
     <section id="contato">
         <h2>Contato</h2>
+
+            <p>Entre em contato comigo preenchendo o formulário abaixo:</p>
+            <form action="">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required><br><br>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required><br><br>
+
+                <label for="mensagem">Mensagem:</label><br>
+                <textarea id="mensagem" name="mensagem" rows="4" cols="50" required></textarea><br><br>
+
+                <input type="submit" value="Enviar">
+
+            </form>
+
+
+        
             <address>
                 <p>E-mail:<a href="mailto:mbgmarcio@gmail.com">mbgmarcio@gmail.com</a> </p>
                 <p>Telefone:<a href="tel:42999110112">(42) 99911-0112</a></p>
