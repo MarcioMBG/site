@@ -102,6 +102,19 @@ tr:nth-child(even) {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
+.projeto {
+    margin-bottom: 40px;
+}
+
+/* IMAGENS */
+.img-projeto {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    margin: 15px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
 /* FORMULÁRIO */
 form {
     background-color: white;
@@ -153,3 +166,7 @@ address a {
         padding: 40px 5%;
     }
 }
+
+
+
+
