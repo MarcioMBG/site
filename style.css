@@ -19,8 +19,13 @@ body {
 header {
     background: linear-gradient(90deg, #1e3c72, #2a5298);
     color: white;
+    /*max-width: 1100px;
+    margin: 0 auto;*/
     padding: 20px 0;
     text-align: center;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 header h1 {
@@ -62,7 +67,7 @@ section h2 {
 
 /* SOBRE */
 #sobre img {
-    border-radius: 50%;
+    border-radius: 20%;
     margin: 20px 0;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
