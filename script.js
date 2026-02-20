@@ -1,7 +1,7 @@
 
 
 (function() {
-    emailjs.init("RtokT3XOfmnNSyo1C"); // sua Public Key
+    emailjs.init("iQ-_OwbyNFL0ui_ww"); // sua Public Key
 })();
 
 document.getElementById("formContato").addEventListener("submit", function(event) {
@@ -21,3 +21,6 @@ document.getElementById("formContato").addEventListener("submit", function(event
         console.log("Erro:", error);
     });
 });
+
+
+
