@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Márcio</title>
     <link rel="stylesheet" href="style.css">
+
+    
 </head>
+
 <body>
     <header>
         <h1>Márcio Barbosa Gonçalves</h1>
@@ -109,7 +112,7 @@
         <h2>Contato</h2>
 
             <p>Entre em contato comigo preenchendo o formulário abaixo:</p>
-            <form action="">
+            <form id="formContato">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" required><br><br>
 
@@ -127,11 +130,16 @@
             </form>
 
 
-        
+            <!--
             <address>
                 <p>E-mail:<a href="mailto:mbgmarcio@gmail.com">mbgmarcio@gmail.com</a> </p>
                 <p>Telefone:<a href="tel:42999110112">(42) 99911-0112</a></p>
             </address>
+            -->
     </section>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
