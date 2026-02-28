@@ -122,10 +122,11 @@ tr:nth-child(even) {
     width: 100%;
     max-width: 500px;
     border-radius: 10px;
-    margin: 15px 0;
+    margin: 10px 0 2px 0;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* VIDEO */
 .video-container {
     position: relative;
     width: 100%;
@@ -146,7 +147,21 @@ tr:nth-child(even) {
     display: flex;
     gap: 16px;
     flex-wrap: wrap; /* quebra no celular */
+    margin: 5px 0 20px 0;
 }
+
+.item-galeria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.legenda {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+}
+
 
 /* FORMULÁRIO */
 form {
