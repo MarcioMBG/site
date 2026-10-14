@@ -1,70 +1,45 @@
-/* RESET E CONFIGURAÇÃO DA TELA (Responsivo e Altura Automática) */
+/* RESET E CONFIGURAÇÃO DA TELA (1400x800) */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #0f172a; 
-    display: flex; 
-    justify-content: center; 
-    align-items: flex-start; /* Permite que o app não fique preso ao centro vertical se for muito longo */
-    min-height: 100vh; 
-    overflow-x: hidden; /* Remove o bloqueio de scroll vertical */
-    padding: 20px 0; /* Espaço para não encostar no topo/rodapé em ecrãs grandes */
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; overflow: hidden;
 }
 
 #app {
-    width: 100%; 
-    max-width: 1400px; 
-    height: auto; 
-    min-height: 90vh; /* Substitui a altura fixa de 800px */
-    background-color: #f8fafc; 
-    position: relative;
+    width: 1400px; height: 800px;
+    background-color: #f8fafc; position: relative;
     box-shadow: 0 10px 40px rgba(0,0,0,0.7);
-    display: flex; flex-direction: column; 
-    overflow: hidden;
-    border-radius: 10px; /* Bordas arredondadas subtis */
+    display: flex; flex-direction: column; overflow: hidden;
 }
-
 .header {
     background: linear-gradient(90deg, #1e3a8a, #2563eb, #1e3a8a);
     color: white; padding: 0 30px; font-size: 30px; font-weight: bold;
     height: 75px; display: flex; align-items: center; justify-content: space-between;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 50; flex-shrink: 0; 
 }
-
-.slide-container { flex-grow: 1; position: relative; width: 100%; height: auto; min-height: 500px; }
-
-/* MÁGICA DA ALTURA AUTOMÁTICA DOS SLIDES */
+.slide-container { flex-grow: 1; position: relative; width: 100%; height: 625px; }
 .slide {
-    width: 100%; height: auto;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     padding: 25px 45px; opacity: 0; visibility: hidden;
     transition: opacity 0.5s ease-in-out; display: flex; flex-direction: column;
-    /* Slides inativos não ocupam espaço físico */
-    position: absolute; top: 0; left: 0; z-index: -1; 
 }
-.slide.active { 
-    opacity: 1; visibility: visible; 
-    /* Slide ativo dita a altura da página */
-    position: relative; z-index: 1; 
-}
-
+.slide.active { opacity: 1; visibility: visible; }
 .slide-header { width: 100%; margin-bottom: 20px; }
 .row { display: flex; flex-direction: row; width: 100%; flex-grow: 1; justify-content: space-between; align-items: stretch; gap: 30px; }
 .col-left { width: 48%; display: flex; flex-direction: column; justify-content: flex-start; position: relative;}
 .col-right { width: 48%; display: flex; flex-direction: column; justify-content: flex-start; position: relative;}
-
 h2 { color: #0f172a; font-size: 38px; margin-bottom: 12px; border-bottom: 3px solid #e2e8f0; padding-bottom: 8px;}
 h3 { color: #1e293b; font-size: 24px; margin-bottom: 8px; }
 p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 .highlight { color: #2563eb; font-weight: bold; }
 .badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-weight: bold; color: white; font-size: 16px; margin-left: 8px; vertical-align: middle;}
-
 .bg-blue { background: #3b82f6; } .bg-green { background: #10b981; } .bg-orange { background: #f59e0b; } .bg-red { background: #ef4444; } .bg-purple { background: #8b5cf6; } .bg-slate { background: #475569; }
-
 .info-box { background: #f1f5f9; border-left: 6px solid #2563eb; padding: 15px 20px; font-size: 19px; color: #1e293b; margin-top: auto; border-radius: 0 8px 8px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.05);}
 .btn-action { background: #0f172a; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; font-size: 19px; font-weight:bold; transition: 0.2s; width: 100%; margin-bottom: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);}
 .btn-action:hover { background: #334155; transform: translateY(-2px); }
 .btn-action:active { transform: translateY(2px); }
-
 .data-panel { background: white; padding: 20px; border-radius: 10px; border: 2px solid #cbd5e1; box-shadow: 0 6px 12px rgba(0,0,0,0.05); margin-bottom: 12px;}
 .data-row { display: flex; justify-content: space-between; align-items: center; font-size: 22px; border-bottom: 2px dashed #e2e8f0; padding-bottom: 10px; margin-bottom: 10px;}
 .data-row:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
@@ -79,8 +54,8 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 .type-zone:last-child { border-right: none; }
 .data-card { position: absolute; width: 140px; background: white; border: 2px solid #cbd5e1; border-radius: 8px; padding: 10px; text-align: center; font-weight: bold; color: #1e293b; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.8s ease; z-index: 10;}
 .card-icon { font-size: 32px; margin-bottom: 5px; }
-.table-container { width: 100%; background: white; border-radius: 8px; overflow: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #cbd5e1; }
-.data-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 18px; min-width: 400px;}
+.table-container { width: 100%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #cbd5e1; }
+.data-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 18px; }
 .data-table th { background: #1e293b; color: white; padding: 12px; }
 .data-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; transition: all 0.5s ease; }
 .cell-error { background: #fecaca; color: #991b1b; font-weight: bold; }
@@ -89,13 +64,13 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 
 /* ================= GRÁFICOS DO MÓDULO 2 ================= */
 .pop-container { height: 260px; background: #e2e8f0; border-radius: 10px; position: relative; border: 3px solid #94a3b8; margin-bottom: 12px; overflow: hidden; display: flex; }
-.pop-box { width: 65%; height: 100%; position: relative; border-right: 3px dashed #94a3b8; overflow: hidden; }
+.pop-box { width: 65%; height: 100%; position: relative; border-right: 3px dashed #94a3b8; }
 .sample-box { width: 35%; height: 100%; background: #f8fafc; position: relative; display: flex; align-items: center; justify-content: center;}
 .pop-lbl { position: absolute; top: 10px; left: 15px; font-weight: bold; color: #1e293b; z-index: 10; font-size: 18px; background: rgba(255,255,255,0.7); padding: 2px 8px; border-radius: 4px;}
 .particula { width: 14px; height: 14px; background: #3b82f6; border-radius: 50%; position: absolute; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.3); border: 2px solid #1e3a8a;}
 .particula.bad { background: #ef4444; border-color: #991b1b; }
 .particula.green { background: #10b981; border-color: #047857; }
-.sampling-grid { display: flex; flex-wrap: wrap; background: #e2e8f0; padding: 15px 15px; border-radius: 10px; height: 340px; align-content: flex-start; justify-content: center; overflow: auto;}
+.sampling-grid { display: flex; flex-wrap: wrap; background: #e2e8f0; padding: 15px 15px; border-radius: 10px; height: 340px; align-content: flex-start; justify-content: center; }
 .sample-item { width: 45px; height: 45px; margin: 10px 22px; background: #cbd5e1; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; color: #1e293b; transition: all 0.4s ease; border: 2px solid #94a3b8; box-sizing: border-box; }
 .sample-item.selected { background: #2563eb; color: white; transform: scale(1.1); border-color: #1d4ed8; box-shadow: 0 4px 8px rgba(37,99,235,0.4); }
 .sample-item.stratum-1 { border-left: 5px solid #10b981; }
@@ -112,7 +87,7 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 .tick { position: absolute; width: 2px; height: 15px; background: #94a3b8; top: 10px; }
 .tick-lbl { position: absolute; top: 30px; font-size: 14px; font-weight: bold; color: #475569; transform: translateX(-50%); }
 
-/* ================= GRÁFICOS DO MÓDULO 3 ================= */
+/* ================= GRÁFICOS E COMPONENTES DO MÓDULO 3 ================= */
 .chart-bar-area { height: 210px; background: #e2e8f0; border-radius: 10px; position: relative; display: flex; align-items: flex-end; justify-content: space-around; padding: 0 20px; border-bottom: 5px solid #94a3b8; margin-bottom: 12px; }
 .bar { width: 55px; background: #3b82f6; border-radius: 6px 6px 0 0; transition: height 0.6s ease, background 0.3s; position: relative; display:flex; justify-content: center; box-shadow: 2px -2px 8px rgba(0,0,0,0.1); }
 .bar-label { position: absolute; top: -30px; font-weight: bold; color: #1e293b; font-size: 20px; }
@@ -141,46 +116,67 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 .geom-square { position: absolute; background: rgba(239, 68, 68, 0.3); border: 2px solid #ef4444; transition: all 0.7s ease; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
 .geom-dot { position: absolute; width: 16px; height: 16px; background: #0f172a; border-radius: 50%; transform: translate(-50%, -50%); transition: all 0.7s ease; z-index: 10; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.4); }
 
-/* ================= GRÁFICOS DO MÓDULO 4 ================= */
-.chart-hist-area { height: 260px; background: #e2e8f0; border-radius: 10px; display: flex; align-items: flex-end; justify-content: center; padding: 0 20px; border-bottom: 5px solid #64748b; margin-bottom: 12px; gap: 4px; overflow-x: auto;}
+/* ================= GRÁFICOS ESPECÍFICOS DO MÓDULO 4 ================= */
+/* Histograma */
+.chart-hist-area { height: 260px; background: #e2e8f0; border-radius: 10px; display: flex; align-items: flex-end; justify-content: center; padding: 0 20px; border-bottom: 5px solid #64748b; margin-bottom: 12px; gap: 4px; }
 .hist-bin { width: 50px; background: #3b82f6; border-radius: 4px 4px 0 0; transition: height 0.3s ease; position: relative; display:flex; justify-content: center; align-items:flex-start;}
 .hist-lbl { position: absolute; bottom: -28px; font-weight: bold; color: #1e293b; font-size: 16px; }
 .hist-val { font-size: 18px; font-weight: bold; color: white; margin-top: 5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);}
 
+/* Curvas SVG */
 .svg-container { width: 100%; height: 260px; background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 10px; position: relative; overflow: hidden; margin-bottom: 12px; }
 .curve-path { fill: rgba(37, 99, 235, 0.2); stroke: #2563eb; stroke-width: 4; transition: d 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 
+/* Linhas Verticais Estatísticas */
 .stat-line { position: absolute; top: 0; height: 100%; width: 3px; transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1); z-index: 10; display: none;}
 .stat-lbl { position: absolute; top: 10px; padding: 4px 8px; font-size: 14px; font-weight: bold; color: white; border-radius: 4px; transform: translateX(-50%); white-space: nowrap;}
+
 .line-moda { background: #f59e0b; } .line-moda .stat-lbl { background: #f59e0b; }
 .line-mediana { background: #10b981; top: 35px; height: calc(100% - 35px); } .line-mediana .stat-lbl { background: #10b981; }
 .line-media { background: #ef4444; top: 70px; height: calc(100% - 70px); } .line-media .stat-lbl { background: #ef4444; }
 
-/* ================= GRÁFICOS DO MÓDULO 5 ================= */
+/* ================= GRÁFICOS DO MÓDULO 5 (CP/CPK) ================= */
+/* A curva (máquina) */
 .curve-bad { fill: rgba(239, 68, 68, 0.2); stroke: #ef4444; }
 .curve-good { fill: rgba(16, 185, 129, 0.2); stroke: #10b981; }
+
+/* Limites de Especificação do Cliente (LSE / LIE) */
 .spec-line { position: absolute; top: 0; height: 100%; width: 4px; background: #ef4444; z-index: 10; border-left: 2px dashed #991b1b;}
 .spec-lbl { position: absolute; top: 5px; padding: 4px 8px; font-size: 16px; font-weight: bold; color: white; background: #ef4444; border-radius: 4px; transform: translateX(-50%); white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.3);}
+
+/* O Alvo (Nominal) */
 .target-line { position: absolute; top: 0; left: 50%; height: 100%; width: 2px; background: #1e293b; z-index: 5; border-left: 2px dashed #64748b;}
 .target-lbl { position: absolute; top: 5px; left: 50%; padding: 4px 8px; font-size: 14px; font-weight: bold; color: white; background: #1e293b; border-radius: 4px; transform: translateX(-50%); white-space: nowrap;}
-.formula-box { background: #1e293b; color: #f8fafc; padding: 15px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; font-size: 22px; text-align: center; margin-bottom: 15px; font-weight: bold; letter-spacing: 1px;}
-.highlight-yellow { color: #fde047; } .highlight-green { color: #4ade80; } .highlight-red { color: #f87171; }
 
-/* ================= GRÁFICOS DO MÓDULO 6 ================= */
+.formula-box { background: #1e293b; color: #f8fafc; padding: 15px; border-radius: 8px; font-family: 'Courier New', Courier, monospace; font-size: 22px; text-align: center; margin-bottom: 15px; font-weight: bold; letter-spacing: 1px;}
+.highlight-yellow { color: #fde047; }
+.highlight-green { color: #4ade80; }
+.highlight-red { color: #f87171; }
+
+/* ================= GRÁFICOS DO MÓDULO 6 (CEP SVG) ================= */
 .chart-svg { width: 100%; height: 260px; background: #ffffff; border: 2px solid #94a3b8; border-radius: 8px; margin-bottom: 15px; }
-.zone-3s { fill: #fee2e2; } 
-.zone-2s { fill: #fef3c7; } 
-.zone-1s { fill: #dcfce7; } 
+
+/* Zonas e Linhas da Carta */
+.zone-3s { fill: #fee2e2; } /* Fundo Vermelho claro (Zona A) */
+.zone-2s { fill: #fef3c7; } /* Fundo Amarelo claro (Zona B) */
+.zone-1s { fill: #dcfce7; } /* Fundo Verde claro (Zona C) */
+
 .line-lsc-lic { stroke: #ef4444; stroke-width: 2; stroke-dasharray: 6,4; }
 .line-center { stroke: #10b981; stroke-width: 2; }
+
+/* Dados Plotados */
 .plot-line { fill: none; stroke: #2563eb; stroke-width: 3; stroke-linejoin: round; }
 .plot-point { fill: #ffffff; stroke: #2563eb; stroke-width: 2; }
 .plot-point.alert { fill: #ef4444; stroke: #991b1b; stroke-width: 3; animation: pulse-alert 1s infinite alternate; }
+
 .label-limite { font-size: 12px; font-weight: bold; fill: #ef4444; }
 .label-centro { font-size: 12px; font-weight: bold; fill: #047857; }
 
-/* ANIMAÇÕES E RODAPÉ */
 @keyframes pulse-alert { 0% { r: 5; } 100% { r: 8; fill: #fca5a5;} }
+
+
+/* ANIMAÇÕES E RODAPÉ */
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
 
 .footer {
@@ -196,49 +192,3 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 .btn-nav:hover { background: #1d4ed8; }
 .btn-nav:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; transform: none;}
 .progress { color: #475569; font-weight: bold; font-size: 22px;}
-
-/* ================= MEDIA QUERIES (RESPONSIVIDADE CELULARES/TABLETS) ================= */
-@media (max-width: 992px) {
-    body { padding: 0; }
-    #app { border-radius: 0; min-height: 100vh; }
-    
-    /* Cabeçalho empilhado */
-    .header {
-        flex-direction: column;
-        height: auto;
-        padding: 15px;
-        font-size: 20px;
-        text-align: center;
-        gap: 10px;
-    }
-
-    /* Colunas lado a lado passam a ficar uma por baixo da outra */
-    .row { flex-direction: column; gap: 20px; }
-    .col-left, .col-right { width: 100%; }
-    .slide { padding: 15px 20px; }
-    
-    /* Ajuste de fontes */
-    h2 { font-size: 28px; }
-    h3 { font-size: 22px; }
-    p { font-size: 18px; }
-    .big-number { font-size: 26px; }
-    .formula-box { font-size: 18px; }
-    
-    /* Rodapé empilhado */
-    .footer {
-        flex-direction: column;
-        height: auto;
-        padding: 15px;
-        gap: 15px;
-    }
-    .btn-nav { width: 100%; }
-    
-    /* Ajuste específico para gráficos não quebrarem a tela */
-    .stage-area, .pop-container { flex-direction: column; height: auto; }
-    .type-zone, .pop-box { width: 100%; border-right: none; border-bottom: 2px dashed #94a3b8; min-height: 200px; }
-    .type-zone:last-child { border-bottom: none; }
-    .sample-box { width: 100%; min-height: 120px; }
-    
-    /* As curvas SVG vão encolher proporcionalmente, mantemos a altura adaptada */
-    .svg-container, .chart-svg, .chart-hist-area, .chart-bar-area, .chart-moda-area, .scatter-area, .geom-area { height: 220px; }
-}
