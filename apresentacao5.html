@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Aprendendo Qualidade No VBA Excel - Módulo 6</title>
+    <!-- Referência ao CSS global -->
+    <link rel="stylesheet" href="apresentacao.css">
+</head>
+<body>
+
+<div id="app">
+    <div class="header">
+        <span>Aprendendo Qualidade No VBA Excel</span>
+        <span>&#128202; Módulo 6: Cartas de Controle (CEP)</span>
+    </div>
+
+    <div class="slide-container">
+        
+        <!-- ================= SLIDE 1: INTRO ================= -->
+        <div class="slide active" id="s1">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; text-align: center; padding: 0 20px;">
+                    <h2 style="border:none; font-size: 46px; margin-bottom:20px; line-height: 1.2;">Da Fotografia <br>para o <span style="color:#2563eb;">Filme ao Vivo</span></h2>
+                    <p style="font-size: 22px;">No Módulo 4, o Cp e Cpk nos deram uma "fotografia" da máquina. Mas a fábrica não para. Ferramentas desgastam, materiais mudam e operadores cansam.</p>
+                </div>
+                <div class="col-right" style="justify-content: center;">
+                    <div class="data-panel" style="border-left: 8px solid #f59e0b; margin-bottom:20px;">
+                        <h3 style="color:#b45309;">A Carta de Controle</h3>
+                        <p style="margin-bottom:0; font-size: 19px;">É um gráfico de linhas contínuo. Ela transforma o Histograma e o deita de lado, plotando as amostras ao longo do tempo (horas, turnos, dias).</p>
+                    </div>
+                    <div class="info-box" style="margin-top:0;">
+                        <b>O Objetivo:</b> Detectar quando o processo sai do controle natural ANTES de fabricar uma peça fora da tolerância do cliente.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 2: CAUSAS COMUNS VS ESPECIAIS ================= -->
+        <div class="slide" id="s2">
+            <div class="slide-header">
+                <h2>Causas Comuns vs. Causas Especiais <span class="badge bg-blue" style="font-size: 26px; padding: 5px 12px;">Ruído vs Sinal</span></h2>
+                <p>Na natureza, nada é exato. Todo processo treme um pouco. O CEP serve para diferenciar o "ruído normal" de uma "anomalia perigosa".</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <svg class="chart-svg" id="svg-s2" viewBox="0 0 600 260">
+                        <line x1="0" y1="130" x2="600" y2="130" class="line-center" />
+                        <line x1="0" y1="40" x2="600" y2="40" class="line-lsc-lic" />
+                        <line x1="0" y1="220" x2="600" y2="220" class="line-lsc-lic" />
+                        <text x="5" y="35" class="label-limite">LSC (+3s)</text>
+                        <text x="5" y="215" class="label-limite">LIC (-3s)</text>
+                        <text x="5" y="125" class="label-centro">Alvo</text>
+                        <g id="plot-s2-group"></g>
+                    </svg>
+                    <div class="info-box" id="msg-s2">O processo está rodando com variação natural (Causas Comuns). A curva sobe e desce, mas nunca passa dos Limites.</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <h3 style="color:#10b981;">Causas Comuns (Aleatórias)</h3>
+                        <p style="font-size: 17px; margin-bottom: 10px;">Variação inerente ao projeto da máquina. Vibrações, temperatura ambiente normal. <b>Ação: Não mexa na máquina!</b></p>
+                        
+                        <h3 style="color:#ef4444; border-top:1px solid #e2e8f0; padding-top:10px;">Causas Especiais (Assinaláveis)</h3>
+                        <p style="font-size: 17px; margin-bottom: 0;">Fatores externos. Lote de matéria-prima ruim, ferramenta quebrou, erro humano. <b>Ação: Pare e investigue!</b></p>
+                    </div>
+                    <div style="margin-top:auto;">
+                        <button class="btn-action" style="background:#10b981;" onclick="s2_Add(false)">Adicionar Leitura Normal (Ruído)</button>
+                        <button class="btn-action" style="background:#ef4444;" onclick="s2_Add(true)">Simular Problema (Causa Especial)</button>
+                        <button class="btn-action" style="background:#64748b; margin-bottom:0;" onclick="s2_Reset()">Limpar Gráfico</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 3: CARTA X-BARRA ================= -->
+        <div class="slide" id="s3">
+            <div class="slide-header">
+                <h2>A Carta $\bar{X}$ (X-Barra / Média) <span class="badge bg-slate" style="font-size: 26px; padding: 5px 12px;">Tendência Central</span></h2>
+                <p>Nós não plotamos peças individuais. Plotamos a <b>Média de uma Amostra</b>. Isso foca em mostrar se a máquina está "deslizando" para fora do Alvo.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <svg class="chart-svg" viewBox="0 0 600 260">
+                        <line x1="0" y1="130" x2="600" y2="130" class="line-center" />
+                        <line x1="0" y1="40" x2="600" y2="40" class="line-lsc-lic" />
+                        <line x1="0" y1="220" x2="600" y2="220" class="line-lsc-lic" />
+                        <text x="5" y="35" class="label-limite">LSC</text><text x="5" y="215" class="label-limite">LIC</text>
+                        <polyline points="20,140 80,120 140,150 200,110 260,90 320,80 380,50 440,25 500,15" class="plot-line" />
+                        <circle cx="20" cy="140" r="5" class="plot-point"/>
+                        <circle cx="80" cy="120" r="5" class="plot-point"/>
+                        <circle cx="140" cy="150" r="5" class="plot-point"/>
+                        <circle cx="200" cy="110" r="5" class="plot-point"/>
+                        <circle cx="260" cy="90" r="5" class="plot-point"/>
+                        <circle cx="320" cy="80" r="5" class="plot-point"/>
+                        <circle cx="380" cy="50" r="5" class="plot-point"/>
+                        <circle cx="440" cy="25" r="5" class="plot-point alert"/>
+                        <circle cx="500" cy="15" r="5" class="plot-point alert"/>
+                    </svg>
+                    <div class="info-box">Aqui o processo "deslizou" para cima, estourando o LSC. A Média saiu do controle.</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel" style="border-left: 8px solid #2563eb;">
+                        <h3 style="color:#1e3a8a;">Por que a Média ($\bar{X}$)?</h3>
+                        <p style="margin-bottom:10px; font-size: 19px;">Se pegarmos 5 peças a cada hora e calcularmos a média delas, teremos uma visão muito mais limpa do comportamento da máquina.</p>
+                        <h3 style="color:#991b1b; font-size:20px; border-top: 1px solid #e2e8f0; padding-top:10px;">O que a Carta X detecta?</h3>
+                        <ul style="font-size:18px; margin-left: 20px; line-height: 1.5; color:#334155;">
+                            <li>Desgaste gradual da ferramenta (linha subindo devagar).</li>
+                            <li>Troca errada de setup da máquina (salto repentino).</li>
+                            <li>Mudança na temperatura do fluido de corte.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 4: CARTA R ================= -->
+        <div class="slide" id="s4">
+            <div class="slide-header">
+                <h2>A Carta R (Amplitude / Range) <span class="badge bg-orange" style="font-size: 26px; padding: 5px 12px;">Dispersão</span></h2>
+                <p>O pesadelo do inspetor: <b>A média está perfeita no centro, mas as peças variam absurdamente!</b> A Carta R acompanha a Carta X para garantir que a dispersão não está estourando.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <svg class="chart-svg" viewBox="0 0 600 260">
+                        <line x1="0" y1="200" x2="600" y2="200" class="line-center" />
+                        <line x1="0" y1="50" x2="600" y2="50" class="line-lsc-lic" />
+                        <text x="5" y="45" class="label-limite">LSC (Amplitude Máxima)</text>
+                        <text x="5" y="195" class="label-centro">$\bar{R}$ (Amplitude Média)</text>
+                        <line x1="0" y1="250" x2="600" y2="250" class="line-lsc-lic" style="stroke:#64748b;" />
+                        <text x="5" y="245" style="font-size:12px; fill:#64748b; font-weight:bold;">0 (Zero Variação)</text>
+                        <polyline points="40,210 120,180 200,190 280,220 360,70 440,30 520,40" class="plot-line" style="stroke:#f59e0b;"/>
+                        <circle cx="40" cy="210" r="5" class="plot-point" style="stroke:#f59e0b;"/>
+                        <circle cx="120" cy="180" r="5" class="plot-point" style="stroke:#f59e0b;"/>
+                        <circle cx="200" cy="190" r="5" class="plot-point" style="stroke:#f59e0b;"/>
+                        <circle cx="280" cy="220" r="5" class="plot-point" style="stroke:#f59e0b;"/>
+                        <circle cx="360" cy="70" r="5" class="plot-point" style="stroke:#f59e0b;"/>
+                        <circle cx="440" cy="30" r="5" class="plot-point alert"/>
+                        <circle cx="520" cy="40" r="5" class="plot-point alert"/>
+                    </svg>
+                    <div class="info-box" style="border-left-color: #f59e0b;">As últimas amostras tiveram peças muito grandes misturadas com muito pequenas. A máquina perdeu a precisão.</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row"><span>Cálculo do Range (R):</span> <span class="big-number" style="color:#f59e0b; font-size:24px;">Maior - Menor</span></div>
+                    </div>
+                    <p style="font-size: 19px;">Exemplo da Amostra 6:</p>
+                    <ul style="font-size: 19px; line-height: 1.6; color: #1e293b; margin-left: 20px;">
+                        <li>Peça A: 10 mm</li>
+                        <li>Peça B: 90 mm</li>
+                        <li><b>Média (Carta X):</b> 50 mm (Perfeito no alvo!)</li>
+                        <li><b>Amplitude (Carta R):</b> 90 - 10 = <b>80 mm</b> (Estourou o LSC!)</li>
+                    </ul>
+                    <p style="margin-top:10px; font-weight:bold; color:#991b1b;">Se controlarmos apenas a Média, aprovaremos lotes defeituosos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 5: WESTERN ELECTRIC ================= -->
+        <div class="slide" id="s5">
+            <div class="slide-header">
+                <h2>Regras da Western Electric <span class="badge bg-red" style="font-size: 26px; padding: 5px 12px;">Alarmes Inteligentes</span></h2>
+                <p>Criadas na década de 50, detectam anomalias na curva antes do limite estourar. É a matemática caçando padrões não naturais.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <svg class="chart-svg" viewBox="0 0 600 260">
+                        <rect x="0" y="40" width="600" height="30" class="zone-3s" />
+                        <rect x="0" y="70" width="600" height="60" class="zone-2s" />
+                        <rect x="0" y="130" width="600" height="60" class="zone-1s" />
+                        <rect x="0" y="190" width="600" height="30" class="zone-2s" />
+                        <rect x="0" y="220" width="600" height="30" class="zone-3s" />
+                        <line x1="0" y1="130" x2="600" y2="130" class="line-center" />
+                        <line x1="0" y1="40" x2="600" y2="40" class="line-lsc-lic" />
+                        <line x1="0" y1="250" x2="600" y2="250" class="line-lsc-lic" />
+                        <text x="5" y="35" class="label-limite">LSC (+3s)</text>
+                        <g id="plot-we-group"></g>
+                    </svg>
+                    <div class="info-box" id="msg-we" style="border-left-color: #ef4444;">Clique nas regras ao lado para ver como a carta detecta padrões que deveriam ser impossíveis de acontecer por acaso.</div>
+                </div>
+                <div class="col-right">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button class="btn-action" style="background:#1e293b; text-align:left; font-size:16px; padding: 10px;" onclick="s5_DrawRule(1)">
+                            <b>Regra 1:</b> 1 ponto além do LSC/LIC (Fora de ±3s).<br><span style="font-weight:normal; font-size:14px; color:#cbd5e1;">A máquina quebrou agora.</span>
+                        </button>
+                        <button class="btn-action" style="background:#334155; text-align:left; font-size:16px; padding: 10px;" onclick="s5_DrawRule(2)">
+                            <b>Regra 2:</b> 2 de 3 pontos na Zona A (Além de ±2s).<br><span style="font-weight:normal; font-size:14px; color:#cbd5e1;">Alerta precoce de que a curva "engordou".</span>
+                        </button>
+                        <button class="btn-action" style="background:#475569; text-align:left; font-size:16px; padding: 10px;" onclick="s5_DrawRule(3)">
+                            <b>Regra 3:</b> 4 de 5 pontos na Zona B ou além (Além de ±1s).<br><span style="font-weight:normal; font-size:14px; color:#cbd5e1;">Mudança abrupta no nível do processo.</span>
+                        </button>
+                        <button class="btn-action" style="background:#64748b; text-align:left; font-size:16px; padding: 10px;" onclick="s5_DrawRule(4)">
+                            <b>Regra 4:</b> 8 pontos consecutivos do mesmo lado do alvo.<br><span style="font-weight:normal; font-size:14px; color:#cbd5e1;">Desgaste de ferramenta ou erro no zero-peça.</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 6: REGRAS DE NELSON ================= -->
+        <div class="slide" id="s6">
+            <div class="slide-header">
+                <h2>Regras de Nelson (1984) <span class="badge bg-purple" style="font-size: 26px; padding: 5px 12px;">Evolução do Controle</span></h2>
+                <p>Lloyd S. Nelson expandiu a Western Electric criando 8 regras. Elas focam em ciclos sutis e comportamentos de longo prazo da máquina. Veja 4 clássicas:</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <svg class="chart-svg" viewBox="0 0 600 260">
+                        <rect x="0" y="40" width="600" height="30" class="zone-3s" />
+                        <rect x="0" y="70" width="600" height="60" class="zone-2s" />
+                        <rect x="0" y="130" width="600" height="60" class="zone-1s" />
+                        <rect x="0" y="190" width="600" height="30" class="zone-2s" />
+                        <rect x="0" y="220" width="600" height="30" class="zone-3s" />
+                        <line x1="0" y1="130" x2="600" y2="130" class="line-center" />
+                        <line x1="0" y1="40" x2="600" y2="40" class="line-lsc-lic" />
+                        <line x1="0" y1="250" x2="600" y2="250" class="line-lsc-lic" />
+                        <line x1="0" y1="70" x2="600" y2="70" style="stroke:#cbd5e1; stroke-width:1; stroke-dasharray:4,4;"/>
+                        <line x1="0" y1="220" x2="600" y2="220" style="stroke:#cbd5e1; stroke-width:1; stroke-dasharray:4,4;"/>
+                        <line x1="0" y1="100" x2="600" y2="100" style="stroke:#94a3b8; stroke-width:1; stroke-dasharray:4,4;"/>
+                        <line x1="0" y1="160" x2="600" y2="160" style="stroke:#94a3b8; stroke-width:1; stroke-dasharray:4,4;"/>
+                        <text x="5" y="35" class="label-limite">LSC</text>
+                        <g id="plot-nelson-group"></g>
+                    </svg>
+                    <div class="info-box" id="msg-nelson" style="border-left-color: #8b5cf6;">Clique nas regras para observar os padrões adicionais detectados pelo Método Nelson.</div>
+                </div>
+                <div class="col-right">
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button class="btn-action" style="background:#4c1d95; text-align:left; font-size:16px; padding: 10px;" onclick="s6_DrawRule(3)">
+                            <b>Regra 3 (Tendência):</b> 6 pontos subindo ou descendo direto.<br><span style="font-weight:normal; font-size:14px; color:#ddd6fe;">A máquina está esquentando ou a ferramenta desgastando continuamente.</span>
+                        </button>
+                        <button class="btn-action" style="background:#5b21b6; text-align:left; font-size:16px; padding: 10px;" onclick="s6_DrawRule(4)">
+                            <b>Regra 4 (Sobrecontrole):</b> 14 pontos alternando (Sobe/Desce).<br><span style="font-weight:normal; font-size:14px; color:#ddd6fe;">O operador ajustando a máquina toda hora tentando acertar o alvo à força.</span>
+                        </button>
+                        <button class="btn-action" style="background:#6d28d9; text-align:left; font-size:16px; padding: 10px;" onclick="s6_DrawRule(7)">
+                            <b>Regra 7 (Estratificação):</b> 15 pontos presos na Zona C (±1s).<br><span style="font-weight:normal; font-size:14px; color:#ddd6fe;">Bom demais pra ser verdade. Erro no sensor ou limites calculados errado.</span>
+                        </button>
+                        <button class="btn-action" style="background:#7c3aed; text-align:left; font-size:16px; padding: 10px;" onclick="s6_DrawRule(8)">
+                            <b>Regra 8 (Mistura):</b> 8 pontos fora da Zona C, pulando de A pra B.<br><span style="font-weight:normal; font-size:14px; color:#ddd6fe;">Duas máquinas/lotes diferentes misturados no mesmo gráfico.</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 7: CONCLUSÃO ================= -->
+        <div class="slide" id="s7">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; padding-left: 20px;">
+                    <h2 style="border:none; font-size:42px;">O Ciclo da Qualidade se Fecha<br><span style="color:#2563eb;">DMAIC e a Melhoria Contínua</span></h2>
+                    <p style="font-size: 22px; margin-top:10px;">Dominamos o CEP com as regras Western Electric e Nelson. O que fazemos quando um alarme dispara?</p>
+                    
+                    <ul style="list-style-type: none; font-size: 22px; color: #1e293b; line-height: 1.8; margin-top:20px;">
+                        <li>&#128202; <b>Definir e Medir:</b> O alarme soou, pegamos os dados.</li>
+                        <li>&#128270; <b>Analisar (Ishikawa / 5 Porquês):</b> Por que estourou o LSC?</li>
+                        <li>&#9881; <b>Melhorar (Improve):</b> Arrumar o maquinário.</li>
+                        <li>&#9989; <b>Controlar (Control):</b> Voltar a rodar o CEP para garantir que a causa raiz morreu.</li>
+                    </ul>
+                </div>
+                <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
+                    <div style="font-size: 130px; margin-bottom:20px; animation: float 3s ease-in-out infinite;">&#127942;</div>
+                    <h3 style="color: #0f172a; font-size:36px;">Parabéns!</h3>
+                    <p style="font-size:22px;">Você agora entende a linguagem universal da qualidade na engenharia avançada. <b>Controla-se apenas o que mede-se!</b></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RODAPÉ FIXO -->
+    <div class="footer">
+        <button class="btn-nav" id="btnPrev" onclick="mudarSlide(-1)">&#9664; Voltar</button>
+        <div class="progress" id="txtProgress">Slide 1 de 7</div>
+        <button class="btn-nav" id="btnNext" onclick="mudarSlide(1)">Avançar &#9654;</button>
+    </div>
+</div>
+
+<!-- Referência ao JS externo -->
+<script src="apresentacao5.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Aprendendo Qualidade No VBA Excel - Módulo 5</title>
+    <!-- Referência ao CSS global -->
+    <link rel="stylesheet" href="apresentacao.css">
+</head>
+<body>
+
+<div id="app">
+    <div class="header">
+        <span>Aprendendo Qualidade No VBA Excel</span>
+        <span>&#128202; Módulo 5: Capabilidade de Processos (Cp e Cpk)</span>
+    </div>
+
+    <div class="slide-container">
+        <!-- ================= SLIDE 1: INTRO ================= -->
+        <div class="slide active" id="s1">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; text-align: center; padding: 0 20px;">
+                    <h2 style="border:none; font-size: 46px; margin-bottom:20px; line-height: 1.2;">A Batalha Final:<br><span style="color:#2563eb;">Máquina vs. Cliente</span></h2>
+                    <p style="font-size: 22px;">Ter um processo estável não significa ter um processo <b>Capaz</b>. O cliente não quer saber da sua média, ele quer saber se a peça cabe na montagem dele.</p>
+                </div>
+                <div class="col-right" style="justify-content: center;">
+                    <div class="data-panel" style="border-left: 8px solid #3b82f6;">
+                        <h3 style="color:#1e3a8a;">A Voz do Processo (VoP)</h3>
+                        <p style="margin-bottom:0; font-size: 19px;">É a Curva Normal da sua máquina. Representa a variação natural de 6 Desvios Padrão (±3s). É o que a máquina <b>consegue</b> fazer.</p>
+                    </div>
+                    <div class="data-panel" style="border-left: 8px solid #ef4444;">
+                        <h3 style="color:#991b1b;">A Voz do Cliente (VoC)</h3>
+                        <p style="margin-bottom:0; font-size: 19px;">São os Limites de Especificação: <b>LIE</b> (Inferior) e <b>LSE</b> (Superior). Representam o que o cliente <b>exige</b> para não devolver o lote.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 2: O CAMPO DE FUTEBOL ================= -->
+        <div class="slide" id="s2">
+            <div class="slide-header">
+                <h2>A Metáfora da Garagem <span class="badge bg-slate" style="font-size: 26px; padding: 5px 12px;">&#128663;</span></h2>
+                <p>Imagine que os limites do cliente (LIE e LSE) são as paredes de uma garagem. A curva da sua máquina é o seu carro. Ele vai caber lá dentro?</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="svg-container">
+                        <div class="spec-line" style="left: 25%;"><div class="spec-lbl">LIE (Mínimo)</div></div>
+                        <div class="spec-line" style="left: 75%;"><div class="spec-lbl">LSE (Máximo)</div></div>
+                        <div class="target-line"><div class="target-lbl">Alvo</div></div>
+                        <svg viewBox="0 0 600 260" width="100%" height="100%">
+                            <path id="curve-s2" class="curve-path" d=""></path>
+                        </svg>
+                    </div>
+                    <div class="info-box" id="msg-s2">Se o "carro" (variação da máquina) for mais largo que a garagem, você raspa a pintura (gera refugo).</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row"><span>Tolerância do Cliente:</span> <span class="big-number" style="color:#64748b;">50 mm</span></div>
+                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
+                            <span>Variação da Máquina (6s):</span> <span class="big-number" id="txt-s2-vop" style="color:#2563eb;">50 mm</span>
+                        </div>
+                    </div>
+                    <p style="margin-bottom:auto;">A <b>Capabilidade</b> nasce da divisão entre o espaço que o cliente dá (Tolerância) e o espaço que a máquina precisa (Variação).</p>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#2563eb;" onclick="s2_Animar(false)">Ver Máquina Desregulada (Larga)</button>
+                        <button class="btn-action" style="background:#10b981; margin-bottom:0;" onclick="s2_Animar(true)">Ver Máquina de Precisão (Estreita)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 3: Cp (Capabilidade Potencial) ================= -->
+        <div class="slide" id="s3">
+            <div class="slide-header">
+                <h2>Cp: Capabilidade Potencial <span class="badge bg-blue" style="font-size: 26px; padding: 5px 12px;">Largura</span></h2>
+                <p>O Cp compara apenas a LARGURA. Ele responde à pergunta: <i>"Se eu mirar perfeitamente no centro, o processo cabe dentro dos limites?"</i></p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="formula-box">
+                        Cp = (LSE - LIE) / 6s
+                    </div>
+                    <div class="svg-container">
+                        <div class="spec-line" style="left: 20%;"><div class="spec-lbl" style="top:auto; bottom:5px;">LIE</div></div>
+                        <div class="spec-line" style="left: 80%;"><div class="spec-lbl" style="top:auto; bottom:5px;">LSE</div></div>
+                        <svg viewBox="0 0 600 260" width="100%" height="100%">
+                            <path id="curve-cp" class="curve-path" d=""></path>
+                        </svg>
+                    </div>
+                    <div class="info-box" id="msg-cp">Ajuste a variação da máquina ao lado. O Cp mede o seu "Potencial".</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel" style="border-left: 8px solid #2563eb;" id="panel-cp">
+                        <div class="data-row"><span>Status do Processo:</span> <span class="big-number" id="txt-cp-status" style="color:#ef4444; font-size: 24px;">Incapaz</span></div>
+                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
+                            <span>Valor de Cp:</span> <span class="big-number" id="txt-cp-val" style="color:#ef4444;">0.67</span>
+                        </div>
+                    </div>
+                    <p style="margin-bottom:auto;">Simule a variação ($\sigma$) da máquina. Quanto mais fina a curva, maior o Cp.</p>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#ef4444;" onclick="s3_SetCp(0.67, 75)">Cp &lt; 1 (Alta Variação, Transborda)</button>
+                        <button class="btn-action" style="background:#f59e0b;" onclick="s3_SetCp(1.00, 50)">Cp = 1 (Na Trave, Exato)</button>
+                        <button class="btn-action" style="background:#10b981; margin-bottom:0;" onclick="s3_SetCp(1.33, 37.5)">Cp > 1 (Folga, Processo Capaz)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 4: Cpk (Índice Centrado) ================= -->
+        <div class="slide" id="s4">
+            <div class="slide-header">
+                <h2>Cpk: Capabilidade Real (Centramento) <span class="badge bg-green" style="font-size: 26px; padding: 5px 12px;">Posição</span></h2>
+                <p>O Cp é o "Potencial", mas se você mirar torto, vai gerar refugo igual. O <b>Cpk</b> mede a realidade considerando o desvio da média em relação ao alvo.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="formula-box" style="font-size: 18px;">
+                        Cpk = Mínimo( <span class="highlight-yellow">(LSE - Média)/3s</span> , <span class="highlight-green">(Média - LIE)/3s</span> )
+                    </div>
+                    <div class="svg-container">
+                        <div class="spec-line" style="left: 20%;"><div class="spec-lbl" style="top:auto; bottom:5px;">LIE</div></div>
+                        <div class="spec-line" style="left: 80%;"><div class="spec-lbl" style="top:auto; bottom:5px;">LSE</div></div>
+                        <div class="target-line" style="border-left-color: rgba(0,0,0,0.1);"></div>
+                        <svg viewBox="0 0 600 260" width="100%" height="100%">
+                            <path id="curve-cpk" class="curve-path" d=""></path>
+                        </svg>
+                    </div>
+                    <div class="info-box" id="msg-cpk">Mesma máquina de alta precisão (Cp = 1.33), mas com a ferramenta gasta ou mal regulada.</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel" id="panel-cpk">
+                        <div class="data-row"><span>Cp (Potencial Máximo):</span> <span class="big-number" style="color:#64748b;">1.33</span></div>
+                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
+                            <span>Cpk (Capabilidade Real):</span> <span class="big-number" id="txt-cpk-val" style="color:#ef4444;">0.44</span>
+                        </div>
+                    </div>
+                    <p style="margin-bottom:auto;">A máquina consegue fazer (Cp é bom), mas está mal ajustada (Cpk cai). <b>Regra de Ouro: O Cpk nunca será maior que o Cp.</b></p>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#ef4444;" onclick="s4_SetCpk('esq')">Deslocada para Esquerda (Média Próx. LIE)</button>
+                        <button class="btn-action" style="background:#10b981;" onclick="s4_SetCpk('centro')">Perfeitamente Centrada (Média = Alvo)</button>
+                        <button class="btn-action" style="background:#f59e0b; margin-bottom:0;" onclick="s4_SetCpk('dir')">Deslocada para Direita (Média Próx. LSE)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 5: SIX SIGMA E O 1.33 ================= -->
+        <div class="slide" id="s5">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; padding-left: 20px;">
+                    <h2 style="border:none; font-size:42px;">Os Padrões da Indústria:<br><span style="color:#2563eb;">Onde queremos chegar?</span></h2>
+                    <p style="font-size: 22px; margin-top:10px;">Não basta o Cpk ser igual a 1.0 (conta exata). A indústria automotiva e aeronáutica exige folga de segurança, pois processos variam com o tempo (temperatura, turno, fadiga).</p>
+                </div>
+                <div class="col-right" style="justify-content: center;">
+                    <div class="data-panel" style="border-left: 8px solid #ef4444; margin-bottom:15px; padding: 15px;">
+                        <div style="display:flex; justify-content:space-between;">
+                            <h3 style="color:#991b1b; margin:0;">Cpk &lt; 1.00</h3>
+                            <span class="badge bg-red" style="font-size: 14px;">Inaceitável</span>
+                        </div>
+                        <p style="margin:5px 0 0 0; font-size: 18px;">Geração de refugo garantida. O processo está cruzando os limites do cliente. (Mais de 2.700 peças defeituosas por milhão).</p>
+                    </div>
+
+                    <div class="data-panel" style="border-left: 8px solid #f59e0b; margin-bottom:15px; padding: 15px;">
+                        <div style="display:flex; justify-content:space-between;">
+                            <h3 style="color:#b45309; margin:0;">Cpk = 1.00</h3>
+                            <span class="badge bg-orange" style="font-size: 14px;">Mínimo</span>
+                        </div>
+                        <p style="margin:5px 0 0 0; font-size: 18px;">A máquina "raspa na trave". Qualquer leve desvio ou desgaste térmico já gera lote rejeitado. (3 Sigma).</p>
+                    </div>
+
+                    <div class="data-panel" style="border-left: 8px solid #10b981; margin-bottom:15px; padding: 15px;">
+                        <div style="display:flex; justify-content:space-between;">
+                            <h3 style="color:#047857; margin:0;">Cpk = 1.33</h3>
+                            <span class="badge bg-green" style="font-size: 14px;">Padrão Excelência</span>
+                        </div>
+                        <p style="margin:5px 0 0 0; font-size: 18px;">Existe uma "zona de conforto". A variação normal do dia a dia é absorvida sem gerar refugo. (4 Sigma - Exigência automotiva padrão).</p>
+                    </div>
+
+                    <div class="data-panel" style="border-left: 8px solid #8b5cf6; margin-bottom:0; padding: 15px;">
+                        <div style="display:flex; justify-content:space-between;">
+                            <h3 style="color:#6d28d9; margin:0;">Cpk = 2.00</h3>
+                            <span class="badge bg-purple" style="font-size: 14px;">Six Sigma</span>
+                        </div>
+                        <p style="margin:5px 0 0 0; font-size: 18px;">Qualidade Classe Mundial. O limite de especificação do cliente está a 6 Desvios Padrão de distância. (Apenas 3.4 defeitos por milhão!).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 6: PRÓXIMO PASSO ================= -->
+        <div class="slide" id="s6">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; padding-left: 20px;">
+                    <h2 style="border:none; font-size:42px;">Próximo Módulo: <br><span style="color:#2563eb;">Cartas de Controle (CEP)</span></h2>
+                    <p style="font-size: 22px; margin-top:10px;">Até aqui vimos a teoria estatística e a Capabilidade (uma foto estática do processo).</p>
+                    <p style="font-size: 22px;">Mas como garantimos que o Cpk não vai cair ao longo da semana de trabalho?</p>
+                    <ul style="list-style-type: none; font-size: 24px; color: #1e293b; line-height: 1.8; margin-top:20px;">
+                        <li>&#128202; <b>Cartas X-barra R (Gráficos Dinâmicos)</b></li>
+                        <li>&#128269; <b>Causas Comuns vs. Causas Especiais</b></li>
+                        <li>&#128276; <b>Regras de Alarme (Western Electric)</b></li>
+                    </ul>
+                </div>
+                <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
+                <div style="font-size: 130px; margin-bottom:20px; animation: float 3s ease-in-out infinite;">&#128640;</div>
+                    <h3 style="color: #0f172a; font-size:36px;">A Máquina no Tempo!</h3>
+                    <p style="font-size:22px;">Vamos aprender a escutar a máquina a cada hora e parar a produção <b>antes</b> que a primeira peça ruim seja fabricada.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RODAPÉ FIXO -->
+    <div class="footer">
+        <button class="btn-nav" id="btnPrev" onclick="mudarSlide(-1)">&#9664; Voltar</button>
+        <div class="progress" id="txtProgress">Slide 1 de 6</div>
+        <button class="btn-nav" id="btnNext" onclick="mudarSlide(1)">Avançar &#9654;</button>
+    </div>
+</div>
+
+<!-- Referência ao JS externo -->
+<script src="apresentacao4.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Aprendendo Qualidade No VBA Excel - Módulo 3</title>
+    <!-- Referência ao CSS externo -->
+    <link rel="stylesheet" href="apresentacao.css">
+</head>
+<body>
+<div id="app">
+    <div class="header">
+        <span>Aprendendo Qualidade No VBA Excel</span>
+        <span>&#128202; Módulo 3: Tendência Central e Dispersão</span>
+    </div>
+    <div class="slide-container">
+        <!-- SLIDE 1 -->
+        <div class="slide active" id="s1">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; text-align: center; padding: 0 20px;">
+                    <h2 style="border:none; font-size: 46px; margin-bottom:20px; line-height: 1.2;">Controla-se Apenas O Que É Medido.</h2>
+                    <p style="font-size: 22px;">No chão de fábrica, para saber se a máquina está estável e produzindo qualidade, precisamos entender duas forças:</p>
+                </div>
+                <div class="col-right" style="justify-content: center;">
+                    <div class="data-panel" style="border-left: 8px solid #10b981;">
+                        <h3 style="color:#047857;">1. Tendência Central</h3>
+                        <p style="margin-bottom:0; font-size: 19px;">Onde os dados se concentram? Qual é o alvo atingido?<br><b>(Média, Moda, Mediana)</b></p>
+                    </div>
+                    <div class="data-panel" style="border-left: 8px solid #8b5cf6;">
+                        <h3 style="color:#6d28d9;">2. Dispersão (Variabilidade)</h3>
+                        <p style="margin-bottom:0; font-size: 19px;">O quanto as peças variam umas das outras? O processo é previsível?<br><b>(Variância, Desvio Padrão)</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 2 -->
+        <div class="slide" id="s2">
+            <div class="slide-header">
+                <h2>Média Aritmética <span class="badge bg-blue" style="font-size: 26px; padding: 5px 12px;">x¯</span></h2>
+                <p>O <b>ponto de equilíbrio</b> (centro de massa) dos dados. Soma-se todas as peças e divide-se pela quantidade (n).</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="chart-bar-area" id="chart-media">
+                        <div class="mean-line" id="line-media-val"><div class="mean-label" id="lbl-line-media">Média</div></div>
+                    </div>
+                    <div class="info-box" id="msg-media">O processo estável gera uma média no centro.</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row"><span>Valor da Média:</span> <span class="big-number" id="txt-media" style="color:#2563eb;">0</span></div>
+                        <p style="font-size: 16px; color: #64748b; margin-bottom:0;">Fórmula: Σx / n</p>
+                    </div>
+                    <p style="margin-bottom:auto;"><b>Ponto fraco da Média:</b> Sofre muita influência de valores extremos (Outliers). Se um sensor falhar, a média despenca ou decola, distorcendo a realidade.</p>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#10b981;" onclick="s2_Normal()">Produção Normal (Peças ~50mm)</button>
+                        <button class="btn-action" style="background:#ef4444; margin-bottom:0;" onclick="s2_Outlier()">Simular Defeito (Peça de 10mm)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 3 -->
+        <div class="slide" id="s3">
+            <div class="slide-header">
+                <h2>Moda <span class="badge bg-orange" style="font-size: 26px; padding: 5px 12px;">Mo</span></h2>
+                <p>O valor que <b>mais se repete</b> na produção. Num histograma, é a barra mais alta.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="chart-moda-area" id="chart-moda">
+                        <div class="moda-bin" id="bin-1"><div class="moda-count" id="c-1">2</div><div class="moda-bin-lbl">49mm</div></div>
+                        <div class="moda-bin is-moda" id="bin-2"><div class="moda-count" id="c-2">5</div><div class="moda-bin-lbl">50mm</div></div>
+                        <div class="moda-bin" id="bin-3"><div class="moda-count" id="c-3">3</div><div class="moda-bin-lbl">51mm</div></div>
+                    </div>
+                    <div class="info-box">A Moda ajuda a achar vícios de processo. Se o alvo é 50mm, mas a moda é 51mm, a máquina pode estar desregulada sistematicamente.</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
+                            <span>Moda Atual:</span> <span class="big-number" id="txt-moda" style="color:#f59e0b;">50mm</span>
+                        </div>
+                    </div>
+                    <p style="margin-bottom:auto;">Simule a produção inserindo peças nas caixas abaixo para ver a Moda mudar ao vivo:</p>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" onclick="s3_Add(1)">Produzir peça de 49mm</button>
+                        <button class="btn-action" onclick="s3_Add(2)">Produzir peça de 50mm</button>
+                        <button class="btn-action" onclick="s3_Add(3)">Produzir peça de 51mm</button>
+                        <button class="btn-action" style="background:#64748b; margin-top:5px; margin-bottom:0;" onclick="s3_Reset()">Zerar Contagem</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 4 -->
+        <div class="slide" id="s4">
+            <div class="slide-header">
+                <h2>Mediana <span class="badge bg-green" style="font-size: 26px; padding: 5px 12px;">Md</span></h2>
+                <p>O valor que divide os dados <b>exatamente ao meio</b> quando colocados em ordem crescente.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="median-area" id="box-mediana"></div>
+                    <div class="info-box" id="msg-mediana">Dados ordenados. O bloco central é a Mediana.</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row"><span>Média:</span> <span class="big-number" id="txt-med-media" style="color:#2563eb;">0</span></div>
+                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;"><span>Mediana:</span> <span class="big-number" id="txt-med-mediana" style="color:#10b981;">0</span></div>
+                    </div>
+                    <p style="margin-bottom:auto;"><b>A robustez da Mediana:</b> Imune contra Outliers. Diferente da Média, um erro crasso de medição não tira a Mediana do lugar.</p>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#3b82f6;" onclick="s4_Normal()">Dados Normais</button>
+                        <button class="btn-action" style="background:#ef4444; margin-bottom:0;" onclick="s4_Outlier()">Inserir Leitura Falsa (999)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 5 -->
+        <div class="slide" id="s5">
+            <div class="slide-header">
+                <h2>Variância: O Conceito <span class="badge bg-red" style="font-size: 26px; padding: 5px 12px;">S²</span></h2>
+                <p>Mede o quanto as peças "fogem" da Média. Ela pega a distância de cada peça até o alvo e <b>eleva ao quadrado</b>.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="scatter-area">
+                        <div class="scatter-target"><span style="position:absolute; top:-25px; left:-25px; font-weight:bold; color:red; font-size:16px;">Média</span></div>
+                        <div class="dot" id="v-dot-1"></div>
+                        <div class="dot" id="v-dot-2"></div>
+                        <div class="dot" id="v-dot-3"></div>
+                        <div class="dot" id="v-dot-4"></div>
+                    </div>
+                    <div class="variance-box-visual"><div class="v-square" id="v-square-vis">Área = S²</div></div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
+                            <span>Variância (S²):</span> <span class="big-number" id="txt-variancia" style="color:#ef4444;">0</span>
+                        </div>
+                    </div>
+                    <div class="info-box" style="margin-top:0; margin-bottom:auto;">Por elevar as medidas ao quadrado, o número fica difícil de interpretar fisicamente. Porém, é o alicerce matemático da Qualidade.</div>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#10b981;" onclick="s5_Simular(false)">Processo Controlado (Peças juntas)</button>
+                        <button class="btn-action" style="background:#ef4444; margin-bottom:0;" onclick="s5_Simular(true)">Processo Descontrolado (Espalhadas)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 6 -->
+        <div class="slide" id="s6">
+            <div class="slide-header">
+                <h2>A Geometria da Variância <span class="badge bg-red" style="font-size: 26px; padding: 5px 12px;">S(x-x¯)²</span></h2>
+                <p>Visualmente, a variância desenha <b>quadrados</b> usando a distância de cada peça até a média. Note como pontos distantes geram quadrados gigantes!</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="geom-area">
+                        <div class="geom-mean-line"><span style="position:absolute; left:10px; top:-25px; font-weight:bold; color:#1e293b;">Média</span></div>
+                        <div class="geom-square" id="gs-1"></div><div class="geom-dot" id="gd-1"></div>
+                        <div class="geom-square" id="gs-2"></div><div class="geom-dot" id="gd-2"></div>
+                        <div class="geom-square" id="gs-3"></div><div class="geom-dot" id="gd-3"></div>
+                        <div class="geom-square" id="gs-4"></div><div class="geom-dot" id="gd-4"></div>
+                        <div class="geom-square" id="gs-5"></div><div class="geom-dot" id="gd-5"></div>
+                    </div>
+                    <div class="info-box">Ao dobrar a distância da média, a área do quadrado <b>cresce 4 vezes</b>.</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
+                            <span>Soma das Áreas (S):</span> <span class="big-number" id="txt-soma-areas" style="color:#ef4444;">0</span>
+                        </div>
+                    </div>
+                    <p style="margin-bottom:auto;">A Variância divide essa soma total pela quantidade de peças. Se a área explode, a Variância inteira explode junto.</p>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#10b981;" onclick="s6_Novo_Simular(false)">Distribuição Contida</button>
+                        <button class="btn-action" style="background:#ef4444; margin-bottom:0;" onclick="s6_Novo_Simular(true)">Inserir Grande Dispersão</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 7 -->
+        <div class="slide" id="s7">
+            <div class="slide-header">
+                <h2>Desvio Padrão <span class="badge bg-purple" style="font-size: 26px; padding: 5px 12px;">S ou s</span></h2>
+                <p>A <b>Raiz Quadrada da Variância</b>. Volta a medida para a unidade original, permitindo visualizar a dispersão real.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="scatter-area" style="background: #f8fafc; border: 2px solid #cbd5e1; overflow:hidden;">
+                        <div class="scatter-target" style="background:#1e293b;"></div>
+                        <div id="zone-1" style="position:absolute; top:0; height:100%; background:rgba(139,92,246,0.3); transition: width 0.8s, left 0.8s;"></div>
+                        <span style="position:absolute; bottom:5px; width:100%; text-align:center; font-weight:bold; color:#1e293b; font-size:16px; z-index:20;">Média</span>
+                        <div class="dot" id="s7-dot-1" style="background:#3b82f6; width:18px; height:18px;"></div>
+                        <div class="dot" id="s7-dot-2" style="background:#3b82f6; width:18px; height:18px;"></div>
+                        <div class="dot" id="s7-dot-3" style="background:#3b82f6; width:18px; height:18px;"></div>
+                        <div class="dot" id="s7-dot-4" style="background:#3b82f6; width:18px; height:18px;"></div>
+                        <div class="dot" id="s7-dot-5" style="background:#3b82f6; width:18px; height:18px;"></div>
+                        <div class="dot" id="s7-dot-6" style="background:#3b82f6; width:18px; height:18px;"></div>
+                    </div>
+                    <div style="text-align:center; font-weight:bold; color:#8b5cf6; font-size:16px; margin-top:5px;">Faixa roxa: ± 1 Desvio Padrão</div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row" style="border-bottom:none; margin:0; padding-bottom:0;">
+                            <span>Desvio (S):</span> <span class="big-number" id="txt-dp" style="color:#8b5cf6;">0.00</span>
+                        </div>
+                    </div>
+                    <div class="info-box" style="margin-top:0; border-left-color: #8b5cf6; margin-bottom:auto;"><b>O coração do CEP e do Six Sigma.</b> Quanto menor o desvio, mais previsível a máquina.</div>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#10b981;" onclick="s7_Simular(false)">Máquina Ajustada (S Baixo)</button>
+                        <button class="btn-action" style="background:#ef4444; margin-bottom:0;" onclick="s7_Simular(true)">Máquina Desgastada (S Alto)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 8 -->
+        <div class="slide" id="s8">
+            <div class="slide-header">
+                <h2>Erro Padrão da Média <span class="badge bg-purple" style="font-size: 26px; padding: 5px 12px;">EPM</span></h2>
+                <p>O Desvio Padrão avalia peças individuais. O Erro Padrão avalia a incerteza sobre a <b>Média</b> do lote.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="info-box" style="margin-top:0; margin-bottom:15px; border-left-color: #8b5cf6;">Fórmula: <b>EPM = S / √n</b><br>Quanto maior a amostra (n), menor a incerteza da média.</div>
+                    <div class="chart-bar-area" style="background:#f8fafc; border: 2px solid #cbd5e1; align-items:center; justify-content:center; flex-direction:column; border-bottom: 5px solid #8b5cf6;">
+                        <span style="font-size: 22px; margin-bottom: 20px; font-weight:bold; color:#1e293b;">Incerteza sobre onde está a Média Real:</span>
+                        <div id="epm-visual" style="height: 120px; width: 120px; background: rgba(139,92,246,0.2); border: 2px dashed #8b5cf6; border-radius: 50%; display:flex; align-items:center; justify-content:center; transition:all 0.6s cubic-bezier(0.4, 0, 0.2, 1); position:relative;">
+                            <div style="width:6px; height:6px; background:#ef4444; border-radius:50%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div class="data-panel">
+                        <div class="data-row"><span>Desvio (S):</span> <span class="big-number" style="color:#64748b;">12.0</span></div>
+                        <div class="data-row"><span>Amostra (n):</span> <span class="big-number" id="txt-epm-n" style="color:#2563eb;">4</span></div>
+                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;"><span>EPM:</span> <span class="big-number" id="txt-epm-res" style="color:#8b5cf6;">6.00</span></div>
+                    </div>
+                    <p style="margin-bottom:auto;">Aumente a amostragem:</p>
+                    <div style="margin-top:10px;">
+                        <button class="btn-action" style="background:#ef4444;" onclick="s8_Simular(4)">Coletar 4 Peças (n=4)</button>
+                        <button class="btn-action" style="background:#f59e0b;" onclick="s8_Simular(16)">Coletar 16 Peças (n=16)</button>
+                        <button class="btn-action" style="background:#10b981; margin-bottom:0;" onclick="s8_Simular(144)">Coletar 144 Peças (n=144)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 9 -->
+        <div class="slide" id="s9">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; padding-left: 20px;">
+                    <h2 style="border:none; font-size:42px;">Próximo Módulo: <br><span style="color:#2563eb;">A Natureza dos Dados</span></h2>
+                    <p style="font-size: 22px; margin-top:10px;">Agora que dominamos a Tendência Central e a Dispersão, exploraremos:</p>
+                    <ul style="list-style-type: none; font-size: 24px; color: #1e293b; line-height: 1.8; margin-top:20px;">
+                        <li>&#128202; <b>Distribuição dos Dados</b></li>
+                        <li>&#128200; <b>Distribuição Normal (Gauss)</b></li>
+                        <li>&#128208; <b>Assimetria e Curtose</b></li>
+                    </ul>
+                </div>
+                <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
+                    <div style="font-size: 130px; margin-bottom:20px; animation: float 3s ease-in-out infinite;">&#127919;</div>
+                    <h3 style="color: #0f172a; font-size:36px;">Prepare-se!</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- RODAPÉ FIXO -->
+    <div class="footer">
+        <button class="btn-nav" id="btnPrev" onclick="mudarSlide(-1)">&#9664; Voltar</button>
+        <div class="progress" id="txtProgress">Slide 1 de 9</div>
+        <button class="btn-nav" id="btnNext" onclick="mudarSlide(1)">Avançar &#9654;</button>
+    </div>
+</div>
+
+<!-- Referência ao JavaScript externo -->
+<script src="apresentacao2.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>
