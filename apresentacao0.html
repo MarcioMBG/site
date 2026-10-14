@@ -271,7 +271,7 @@
     var slideAtual = 1; var totalSlides = 6;
     function atualizarNavegacao() {
         document.getElementById('txtProgress').innerText = 'Slide ' + slideAtual + ' de ' + totalSlides;
-        document.getElementById('btnPrev').disabled = (slideAtual === 1);
+        document.getElementById('btnPrev').disabled = false;
         document.getElementById('btnNext').innerHTML = (slideAtual === totalSlides) ? 'Módulo 2 &#9654;' : 'Avançar &#9654;';
         document.getElementById('btnNext').disabled = false;
     }
