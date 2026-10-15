@@ -1,21 +1,20 @@
 /* RESET E CONFIGURAÇÃO DA TELA */
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; } /* CORRIGIDO DE '-' PARA '*' */
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #0f172a; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    height: 100vh; 
-    overflow: hidden; /* Evita rolagem na tela inteira, focando apenas no app */
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; /* Fallback para navegadores muito antigos */
+    height: 100dvh; /* CORRIGIDO: Altura dinâmica para celular */
+    overflow: hidden; 
 }
 
 #app {
-    /* MUDANÇA: Substituído px fixo por % e max-width para responsividade */
     width: 100%; 
     max-width: 1400px; 
-    height: 100vh; /* Ocupa 100% da altura da tela */
+    height: 100vh; 
+    height: 100dvh; /* CORRIGIDO: Evita que o footer suma no celular */
     background-color: #f8fafc; 
     position: relative;
     box-shadow: 0 10px 40px rgba(0,0,0,0.7);
@@ -29,24 +28,24 @@ body {
     color: white; padding: 0 30px; font-size: 30px; font-weight: bold;
     height: 75px; display: flex; align-items: center; justify-content: space-between;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 50; 
-    flex-shrink: 0; /* Mantém o Header FIXO */
+    flex-shrink: 0; 
 }
 
 .slide-container { 
     flex-grow: 1; 
     position: relative; 
     width: 100%; 
-    /* MUDANÇA: Removido height fixo de 625px para adaptar à tela */
     overflow: hidden; 
+    min-height: 0; /* CORRIGIDO: Permite que a rolagem interna funcione */
 }
 
 .slide {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     padding: 25px 45px; opacity: 0; visibility: hidden;
     transition: opacity 0.5s ease-in-out; display: flex; flex-direction: column;
-    /* MUDANÇA: Rolagem ativada APENAS dentro do slide */
     overflow-y: auto; 
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; /* CORRIGIDO: Deixa a rolagem suave no iPhone/iOS */
 }
 
 .slide.active { opacity: 1; visibility: visible; }
