@@ -3,7 +3,6 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <!-- É ESTA LINHA AQUI QUE LIGA A RESPONSIVIDADE NO CELULAR: -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprendendo Qualidade No VBA Excel - Módulo 4</title>
     <!-- Referência ao CSS externo -->
@@ -23,14 +22,13 @@
         <div class="slide active" id="s1">
             <div class="row">
                 <div class="col-left" style="justify-content: center; text-align: center; padding: 0 20px;">
-                    <!-- Removido font-size: 46px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none; margin-bottom:20px; line-height: 1.2;">A Média e o Desvio Padrão não contam toda a história.</h2>
-                    <p style="font-size: 22px;">Dois processos podem ter exatamente a mesma média e a mesma variância, mas gerar resultados completamente diferentes no chão de fábrica.</p>
+                    <h2 class="title-sm no-border mb-20" style="line-height: 1.2;">A Média e o Desvio Padrão não contam toda a história.</h2>
+                    <p class="text-lg">Dois processos podem ter exatamente a mesma média e a mesma variância, mas gerar resultados completamente diferentes no chão de fábrica.</p>
                 </div>
                 <div class="col-right" style="justify-content: center;">
                     <div class="data-panel" style="border-left: 8px solid #2563eb;">
-                        <h3 style="color:#1e3a8a;">O "Formato" dos Dados</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">Para dominarmos o Controle Estatístico de Processos (CEP), precisamos enxergar além dos números isolados. Precisamos visualizar a <b>Distribuição</b>.<br><br>Como as peças se comportam em lote? Elas pendem para um lado? Elas se aglomeram demais? É o que veremos agora.</p>
+                        <h3 class="text-dark-blue">O "Formato" dos Dados</h3>
+                        <p class="text-md no-margin">Para dominarmos o Controle Estatístico de Processos (CEP), precisamos enxergar além dos números isolados. Precisamos visualizar a <b>Distribuição</b>.<br><br>Como as peças se comportam em lote? Elas pendem para um lado? Elas se aglomeram demais? É o que veremos agora.</p>
                     </div>
                 </div>
             </div>
@@ -39,7 +37,7 @@
         <!-- ================= SLIDE 2: HISTOGRAMA ================= -->
         <div class="slide" id="s2">
             <div class="slide-header">
-                <h2>O Histograma e a Curva de Distribuição <span class="badge bg-slate" style="font-size: 26px; padding: 5px 12px;">&#128202;</span></h2>
+                <h2>O Histograma e a Curva de Distribuição <span class="badge bg-slate badge-lg">&#128202;</span></h2>
                 <p>O Histograma agrupa peças com medidas semelhantes em "caixas" (classes). O contorno dessas caixas forma a <b>Curva de Distribuição</b>.</p>
             </div>
             <div class="row">
@@ -51,13 +49,15 @@
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <div class="data-row"><span>Total de Peças Produzidas:</span> <span class="big-number" id="txt-hist-total" style="color:#2563eb;">0</span></div>
+                        <div class="data-row no-margin no-border" style="padding-bottom:0;">
+                            <span>Total de Peças Produzidas:</span> <span class="big-number text-blue" id="txt-hist-total">0</span>
+                        </div>
                     </div>
                     <p style="margin-bottom:auto;">Simule a produção. Repare como os valores centrais (Alvo = 50mm) enchem mais rápido, formando uma "montanha".</p>
-                    <div style="margin-top:10px;">
+                    <div class="mt-10">
                         <button class="btn-action" style="background:#10b981;" onclick="s2_AdicionarLote(50)">Produzir Lote Normal (+50 peças)</button>
                         <button class="btn-action" style="background:#ef4444;" onclick="s2_AdicionarDesvio()">Desgaste de Ferramenta (+10 peças altas)</button>
-                        <button class="btn-action" style="background:#64748b; margin-bottom:0;" onclick="s2_Reset()">Zerar Fábrica</button>
+                        <button class="btn-action no-margin" style="background:#64748b;" onclick="s2_Reset()">Zerar Fábrica</button>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
         <!-- ================= SLIDE 3: CURVA DE GAUSS ================= -->
         <div class="slide" id="s3">
             <div class="slide-header">
-                <h2>Distribuição Normal (Curva de Gauss) <span class="badge bg-blue" style="font-size: 26px; padding: 5px 12px;">&#128200;</span></h2>
+                <h2>Distribuição Normal (Curva de Gauss) <span class="badge bg-blue badge-lg">&#128200;</span></h2>
                 <p>O padrão ouro da natureza e da indústria. A maior parte das peças fica no centro (Média), e raras peças ficam nos extremos.</p>
             </div>
             <div class="row">
@@ -84,15 +84,15 @@
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
-                            <span>Regra Empírica:</span> <span class="big-number" id="txt-gauss-pct" style="color:#2563eb;">-- %</span>
+                        <div class="data-row no-margin no-border" style="padding-bottom:0;">
+                            <span>Regra Empírica:</span> <span class="big-number text-blue" id="txt-gauss-pct">-- %</span>
                         </div>
                     </div>
                     <p style="margin-bottom:auto;">A previsibilidade da curva permite prever refugo. Conhecendo o Desvio Padrão (s), sabemos exatamente onde as peças vão cair.</p>
-                    <div style="margin-top:10px;">
+                    <div class="mt-10">
                         <button class="btn-action" style="background:#8b5cf6;" onclick="s3_AnimarSigma(1, 68, 100)">Área de ± 1 Desvio Padrão (1s)</button>
                         <button class="btn-action" style="background:#2563eb;" onclick="s3_AnimarSigma(2, 95.4, 200)">Área de ± 2 Desvios Padrão (2s)</button>
-                        <button class="btn-action" style="background:#10b981; margin-bottom:0;" onclick="s3_AnimarSigma(3, 99.7, 300)">Área de ± 3 Desvios Padrão (3s)</button>
+                        <button class="btn-action no-margin" style="background:#10b981;" onclick="s3_AnimarSigma(3, 99.7, 300)">Área de ± 3 Desvios Padrão (3s)</button>
                     </div>
                 </div>
             </div>
@@ -101,7 +101,7 @@
         <!-- ================= SLIDE 4: ASSIMETRIA ================= -->
         <div class="slide" id="s4">
             <div class="slide-header">
-                <h2>Assimetria (Skewness) <span class="badge bg-orange" style="font-size: 26px; padding: 5px 12px;">&#128200;</span></h2>
+                <h2>Assimetria (Skewness) <span class="badge bg-orange badge-lg">&#128200;</span></h2>
                 <p>Nem sempre o processo é simétrico. Quando há limites físicos ou desgaste de ferramenta, a curva entorta e "puxa" uma cauda longa.</p>
             </div>
             <div class="row">
@@ -118,15 +118,15 @@
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
-                            <span>Formato:</span> <span class="big-number" id="txt-skew" style="color:#f59e0b;">Simétrica</span>
+                        <div class="data-row no-margin no-border" style="padding-bottom:0;">
+                            <span>Formato:</span> <span class="big-number text-orange" id="txt-skew">Simétrica</span>
                         </div>
                     </div>
                     <p style="margin-bottom:auto;">Explore como a curva se distorce. A ponta fina (a cauda) é o que dá o nome à assimetria.</p>
-                    <div style="margin-top:10px;">
+                    <div class="mt-10">
                         <button class="btn-action" style="background:#64748b;" onclick="s4_SetSkew('simetrica')">Normal (Simétrica)</button>
                         <button class="btn-action" style="background:#f59e0b;" onclick="s4_SetSkew('positiva')">Assimetria Positiva (Cauda p/ Direita)</button>
-                        <button class="btn-action" style="background:#ef4444; margin-bottom:0;" onclick="s4_SetSkew('negativa')">Assimetria Negativa (Cauda p/ Esquerda)</button>
+                        <button class="btn-action no-margin" style="background:#ef4444;" onclick="s4_SetSkew('negativa')">Assimetria Negativa (Cauda p/ Esquerda)</button>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
         <!-- ================= SLIDE 5: CURTOSE ================= -->
         <div class="slide" id="s5">
             <div class="slide-header">
-                <h2>Curtose (Kurtosis) <span class="badge bg-purple" style="font-size: 26px; padding: 5px 12px;">&#128202;</span></h2>
+                <h2>Curtose (Kurtosis) <span class="badge bg-purple badge-lg">&#128202;</span></h2>
                 <p>Mede o quão "esmagada" ou "pontiaguda" a curva é. Ela revela o peso dos extremos (outliers) na distribuição.</p>
             </div>
             <div class="row">
@@ -150,15 +150,15 @@
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
-                            <span>Classificação:</span> <span class="big-number" id="txt-kurt" style="color:#8b5cf6;">Mesocúrtica</span>
+                        <div class="data-row no-margin no-border" style="padding-bottom:0;">
+                            <span>Classificação:</span> <span class="big-number text-purple" id="txt-kurt">Mesocúrtica</span>
                         </div>
                     </div>
                     <p style="margin-bottom:auto;">Processos altamente padronizados geram picos altos. Processos sem controle geram curvas achatadas e largas.</p>
-                    <div style="margin-top:10px;">
+                    <div class="mt-10">
                         <button class="btn-action" style="background:#64748b;" onclick="s5_SetKurt('meso')">Mesocúrtica (Normal Padrão)</button>
                         <button class="btn-action" style="background:#ef4444;" onclick="s5_SetKurt('lepto')">Leptocúrtica (Pontiaguda / Pesada)</button>
-                        <button class="btn-action" style="background:#10b981; margin-bottom:0;" onclick="s5_SetKurt('plati')">Platicúrtica (Achatada / Espalhada)</button>
+                        <button class="btn-action no-margin" style="background:#10b981;" onclick="s5_SetKurt('plati')">Platicúrtica (Achatada / Espalhada)</button>
                     </div>
                 </div>
             </div>
@@ -168,11 +168,10 @@
         <div class="slide" id="s6">
             <div class="row">
                 <div class="col-left" style="justify-content: center; padding-left: 20px;">
-                    <!-- Removido font-size: 42px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none;">Próximo Módulo: <br><span style="color:#2563eb;">Capabilidade (Cp e Cpk)</span></h2>
-                    <p style="font-size: 22px; margin-top:10px;">Agora sabemos interpretar a Média, o Desvio Padrão e o Formato Curva. A próxima etapa é crucial para a Qualidade:</p>
+                    <h2 class="title-sm no-border">Próximo Módulo: <br><span class="text-blue">Capabilidade (Cp e Cpk)</span></h2>
+                    <p class="text-lg mt-10">Agora sabemos interpretar a Média, o Desvio Padrão e o Formato Curva. A próxima etapa é crucial para a Qualidade:</p>
                     
-                    <ul style="list-style-type: none; font-size: 24px; color: #1e293b; line-height: 1.8; margin-top:20px;">
+                    <ul class="list-none">
                         <li>&#127919; <b>A Voz do Processo vs. A Voz do Cliente</b></li>
                         <li>&#128207; <b>Limites de Especificação (LSE / LIE)</b></li>
                         <li>&#128202; <b>O que é um Processo Capaz (Cp)?</b></li>
@@ -181,9 +180,9 @@
                     </ul>
                 </div>
                 <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
-                    <div style="font-size: 130px; margin-bottom:20px; animation: float 3s ease-in-out infinite;">&#127919;</div>
-                    <h3 style="color: #0f172a; font-size:36px;">Estamos prontos!</h3>
-                    <p style="font-size:22px;">Misturar essas distribuições com os limites exigidos pelo cliente revelará exatamente quantas peças serão refugo antes mesmo da máquina ligar.</p>
+                    <div class="icon-huge">&#127919;</div>
+                    <h3 class="text-xxl text-dark">Estamos prontos!</h3>
+                    <p class="text-lg">Misturar essas distribuições com os limites exigidos pelo cliente revelará exatamente quantas peças serão refugo antes mesmo da máquina ligar.</p>
                 </div>
             </div>
         </div>
@@ -198,7 +197,6 @@
     </div>
 </div>
 
-<!-- Referência ao JavaScript externo -->
 <script src="apresentacao3.js"></script>
 <script src="analytics.js"></script>
 </body>

@@ -3,7 +3,6 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <!-- É ESTA LINHA AQUI QUE LIGA A RESPONSIVIDADE NO CELULAR: -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprendendo Qualidade No VBA Excel - Módulo 6</title>
     <!-- Referência ao CSS global -->
@@ -23,16 +22,15 @@
         <div class="slide active" id="s1">
             <div class="row">
                 <div class="col-left" style="justify-content: center; text-align: center; padding: 0 20px;">
-                    <!-- Removido font-size: 46px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none; margin-bottom:20px; line-height: 1.2;">Da Fotografia <br>para o <span style="color:#2563eb;">Filme ao Vivo</span></h2>
-                    <p style="font-size: 22px;">No Módulo 4, o Cp e Cpk nos deram uma "fotografia" da máquina. Mas a fábrica não para. Ferramentas desgastam, materiais mudam e operadores cansam.</p>
+                    <h2 class="title-sm no-border mb-20" style="line-height: 1.2;">Da Fotografia <br>para o <span class="text-blue">Filme ao Vivo</span></h2>
+                    <p class="text-lg">No Módulo 4, o Cp e Cpk nos deram uma "fotografia" da máquina. Mas a fábrica não para. Ferramentas desgastam, materiais mudam e operadores cansam.</p>
                 </div>
                 <div class="col-right" style="justify-content: center;">
-                    <div class="data-panel" style="border-left: 8px solid #f59e0b; margin-bottom:20px;">
+                    <div class="data-panel mb-20" style="border-left: 8px solid #f59e0b;">
                         <h3 style="color:#b45309;">A Carta de Controle</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">É um gráfico de linhas contínuo. Ela transforma o Histograma e o deita de lado, plotando as amostras ao longo do tempo (horas, turnos, dias).</p>
+                        <p class="text-md no-margin">É um gráfico de linhas contínuo. Ela transforma o Histograma e o deita de lado, plotando as amostras ao longo do tempo (horas, turnos, dias).</p>
                     </div>
-                    <div class="info-box" style="margin-top:0;">
+                    <div class="info-box mt-0">
                         <b>O Objetivo:</b> Detectar quando o processo sai do controle natural ANTES de fabricar uma peça fora da tolerância do cliente.
                     </div>
                 </div>
@@ -42,7 +40,7 @@
         <!-- ================= SLIDE 2: CAUSAS COMUNS VS ESPECIAIS ================= -->
         <div class="slide" id="s2">
             <div class="slide-header">
-                <h2>Causas Comuns vs. Causas Especiais <span class="badge bg-blue" style="font-size: 26px; padding: 5px 12px;">Ruído vs Sinal</span></h2>
+                <h2>Causas Comuns vs. Causas Especiais <span class="badge bg-blue badge-lg">Ruído vs Sinal</span></h2>
                 <p>Na natureza, nada é exato. Todo processo treme um pouco. O CEP serve para diferenciar o "ruído normal" de uma "anomalia perigosa".</p>
             </div>
             <div class="row">
@@ -60,16 +58,16 @@
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <h3 style="color:#10b981;">Causas Comuns (Aleatórias)</h3>
-                        <p style="font-size: 17px; margin-bottom: 10px;">Variação inerente ao projeto da máquina. Vibrações, temperatura ambiente normal. <b>Ação: Não mexa na máquina!</b></p>
+                        <h3 class="text-green">Causas Comuns (Aleatórias)</h3>
+                        <p class="text-md mb-10">Variação inerente ao projeto da máquina. Vibrações, temperatura ambiente normal. <b>Ação: Não mexa na máquina!</b></p>
                         
                         <h3 style="color:#ef4444; border-top:1px solid #e2e8f0; padding-top:10px;">Causas Especiais (Assinaláveis)</h3>
-                        <p style="font-size: 17px; margin-bottom: 0;">Fatores externos. Lote de matéria-prima ruim, ferramenta quebrou, erro humano. <b>Ação: Pare e investigue!</b></p>
+                        <p class="text-md no-margin">Fatores externos. Lote de matéria-prima ruim, ferramenta quebrou, erro humano. <b>Ação: Pare e investigue!</b></p>
                     </div>
                     <div style="margin-top:auto;">
                         <button class="btn-action" style="background:#10b981;" onclick="s2_Add(false)">Adicionar Leitura Normal (Ruído)</button>
                         <button class="btn-action" style="background:#ef4444;" onclick="s2_Add(true)">Simular Problema (Causa Especial)</button>
-                        <button class="btn-action" style="background:#64748b; margin-bottom:0;" onclick="s2_Reset()">Limpar Gráfico</button>
+                        <button class="btn-action no-margin" style="background:#64748b;" onclick="s2_Reset()">Limpar Gráfico</button>
                     </div>
                 </div>
             </div>
@@ -78,7 +76,7 @@
         <!-- ================= SLIDE 3: CARTA X-BARRA ================= -->
         <div class="slide" id="s3">
             <div class="slide-header">
-                <h2>A Carta $\bar{X}$ (X-Barra / Média) <span class="badge bg-slate" style="font-size: 26px; padding: 5px 12px;">Tendência Central</span></h2>
+                <h2>A Carta $\bar{X}$ (X-Barra / Média) <span class="badge bg-slate badge-lg">Tendência Central</span></h2>
                 <p>Nós não plotamos peças individuais. Plotamos a <b>Média de uma Amostra</b>. Isso foca em mostrar se a máquina está "deslizando" para fora do Alvo.</p>
             </div>
             <div class="row">
@@ -103,8 +101,8 @@
                 </div>
                 <div class="col-right">
                     <div class="data-panel" style="border-left: 8px solid #2563eb;">
-                        <h3 style="color:#1e3a8a;">Por que a Média ($\bar{X}$)?</h3>
-                        <p style="margin-bottom:10px; font-size: 19px;">Se pegarmos 5 peças a cada hora e calcularmos a média delas, teremos uma visão muito mais limpa do comportamento da máquina.</p>
+                        <h3 class="text-dark-blue">Por que a Média ($\bar{X}$)?</h3>
+                        <p class="text-lg mb-10">Se pegarmos 5 peças a cada hora e calcularmos a média delas, teremos uma visão muito mais limpa do comportamento da máquina.</p>
                         <h3 style="color:#991b1b; font-size:20px; border-top: 1px solid #e2e8f0; padding-top:10px;">O que a Carta X detecta?</h3>
                         <ul style="font-size:18px; margin-left: 20px; line-height: 1.5; color:#334155;">
                             <li>Desgaste gradual da ferramenta (linha subindo devagar).</li>
@@ -119,7 +117,7 @@
         <!-- ================= SLIDE 4: CARTA R ================= -->
         <div class="slide" id="s4">
             <div class="slide-header">
-                <h2>A Carta R (Amplitude / Range) <span class="badge bg-orange" style="font-size: 26px; padding: 5px 12px;">Dispersão</span></h2>
+                <h2>A Carta R (Amplitude / Range) <span class="badge bg-orange badge-lg">Dispersão</span></h2>
                 <p>O pesadelo do inspetor: <b>A média está perfeita no centro, mas as peças variam absurdamente!</b> A Carta R acompanha a Carta X para garantir que a dispersão não está estourando.</p>
             </div>
             <div class="row">
@@ -144,10 +142,12 @@
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <div class="data-row"><span>Cálculo do Range (R):</span> <span class="big-number" style="color:#f59e0b; font-size:24px;">Maior - Menor</span></div>
+                        <div class="data-row no-margin no-border" style="padding-bottom:0;">
+                            <span>Cálculo do Range (R):</span> <span class="big-number text-orange" style="font-size:24px;">Maior - Menor</span>
+                        </div>
                     </div>
-                    <p style="font-size: 19px;">Exemplo da Amostra 6:</p>
-                    <ul style="font-size: 19px; line-height: 1.6; color: #1e293b; margin-left: 20px;">
+                    <p class="text-lg">Exemplo da Amostra 6:</p>
+                    <ul class="text-lg" style="line-height: 1.6; color: #1e293b; margin-left: 20px;">
                         <li>Peça A: 10 mm</li>
                         <li>Peça B: 90 mm</li>
                         <li><b>Média (Carta X):</b> 50 mm (Perfeito no alvo!)</li>
@@ -161,7 +161,7 @@
         <!-- ================= SLIDE 5: WESTERN ELECTRIC ================= -->
         <div class="slide" id="s5">
             <div class="slide-header">
-                <h2>Regras da Western Electric <span class="badge bg-red" style="font-size: 26px; padding: 5px 12px;">Alarmes Inteligentes</span></h2>
+                <h2>Regras da Western Electric <span class="badge bg-red badge-lg">Alarmes Inteligentes</span></h2>
                 <p>Criadas na década de 50, detectam anomalias na curva antes do limite estourar. É a matemática caçando padrões não naturais.</p>
             </div>
             <div class="row">
@@ -191,7 +191,7 @@
                         <button class="btn-action" style="background:#475569; text-align:left; font-size:16px; padding: 10px;" onclick="s5_DrawRule(3)">
                             <b>Regra 3:</b> 4 de 5 pontos na Zona B ou além (Além de ±1s).<br><span style="font-weight:normal; font-size:14px; color:#cbd5e1;">Mudança abrupta no nível do processo.</span>
                         </button>
-                        <button class="btn-action" style="background:#64748b; text-align:left; font-size:16px; padding: 10px;" onclick="s5_DrawRule(4)">
+                        <button class="btn-action no-margin" style="background:#64748b; text-align:left; font-size:16px; padding: 10px;" onclick="s5_DrawRule(4)">
                             <b>Regra 4:</b> 8 pontos consecutivos do mesmo lado do alvo.<br><span style="font-weight:normal; font-size:14px; color:#cbd5e1;">Desgaste de ferramenta ou erro no zero-peça.</span>
                         </button>
                     </div>
@@ -202,7 +202,7 @@
         <!-- ================= SLIDE 6: REGRAS DE NELSON ================= -->
         <div class="slide" id="s6">
             <div class="slide-header">
-                <h2>Regras de Nelson (1984) <span class="badge bg-purple" style="font-size: 26px; padding: 5px 12px;">Evolução do Controle</span></h2>
+                <h2>Regras de Nelson (1984) <span class="badge bg-purple badge-lg">Evolução do Controle</span></h2>
                 <p>Lloyd S. Nelson expandiu a Western Electric criando 8 regras. Elas focam em ciclos sutis e comportamentos de longo prazo da máquina. Veja 4 clássicas:</p>
             </div>
             <div class="row">
@@ -236,7 +236,7 @@
                         <button class="btn-action" style="background:#6d28d9; text-align:left; font-size:16px; padding: 10px;" onclick="s6_DrawRule(7)">
                             <b>Regra 7 (Estratificação):</b> 15 pontos presos na Zona C (±1s).<br><span style="font-weight:normal; font-size:14px; color:#ddd6fe;">Bom demais pra ser verdade. Erro no sensor ou limites calculados errado.</span>
                         </button>
-                        <button class="btn-action" style="background:#7c3aed; text-align:left; font-size:16px; padding: 10px;" onclick="s6_DrawRule(8)">
+                        <button class="btn-action no-margin" style="background:#7c3aed; text-align:left; font-size:16px; padding: 10px;" onclick="s6_DrawRule(8)">
                             <b>Regra 8 (Mistura):</b> 8 pontos fora da Zona C, pulando de A pra B.<br><span style="font-weight:normal; font-size:14px; color:#ddd6fe;">Duas máquinas/lotes diferentes misturados no mesmo gráfico.</span>
                         </button>
                     </div>
@@ -248,11 +248,10 @@
         <div class="slide" id="s7">
             <div class="row">
                 <div class="col-left" style="justify-content: center; padding-left: 20px;">
-                    <!-- Removido font-size: 42px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none;">O Ciclo da Qualidade se Fecha<br><span style="color:#2563eb;">DMAIC e a Melhoria Contínua</span></h2>
-                    <p style="font-size: 22px; margin-top:10px;">Dominamos o CEP com as regras Western Electric e Nelson. O que fazemos quando um alarme dispara?</p>
+                    <h2 class="title-sm no-border">O Ciclo da Qualidade se Fecha<br><span class="text-blue">DMAIC e a Melhoria Contínua</span></h2>
+                    <p class="text-lg mt-10">Dominamos o CEP com as regras Western Electric e Nelson. O que fazemos quando um alarme dispara?</p>
                     
-                    <ul style="list-style-type: none; font-size: 22px; color: #1e293b; line-height: 1.8; margin-top:20px;">
+                    <ul class="list-none">
                         <li>&#128202; <b>Definir e Medir:</b> O alarme soou, pegamos os dados.</li>
                         <li>&#128270; <b>Analisar (Ishikawa / 5 Porquês):</b> Por que estourou o LSC?</li>
                         <li>&#9881; <b>Melhorar (Improve):</b> Arrumar o maquinário.</li>
@@ -260,9 +259,9 @@
                     </ul>
                 </div>
                 <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
-                    <div style="font-size: 130px; margin-bottom:20px; animation: float 3s ease-in-out infinite;">&#127942;</div>
-                    <h3 style="color: #0f172a; font-size:36px;">Parabéns!</h3>
-                    <p style="font-size:22px;">Você agora entende a linguagem universal da qualidade na engenharia avançada. <b>Controla-se apenas o que mede-se!</b></p>
+                    <div class="icon-huge">&#127942;</div>
+                    <h3 class="text-xxl text-dark">Parabéns!</h3>
+                    <p class="text-lg">Você agora entende a linguagem universal da qualidade na engenharia avançada. <b>Controla-se apenas o que mede-se!</b></p>
                 </div>
             </div>
         </div>

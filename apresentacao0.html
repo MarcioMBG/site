@@ -18,32 +18,33 @@
         <!-- ================= SLIDE 1: INTRO ================= -->
         <div class="slide active" id="s1">
             <div class="row">
+                <!-- Mantidos inline apenas posicionamentos estruturais críticos (flexbox/paddings) -->
                 <div class="col-left" style="justify-content: center; padding: 0 20px;">
-                    <!-- Removido font-size: 46px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none; margin-bottom:20px; line-height: 1.2;">A Matéria-Prima <br><span style="color:#2563eb;">do Conhecimento</span></h2>
-                    <p style="font-size: 22px;">Antes de aplicar métodos estatísticos ou inteligência artificial, precisamos entender a menor unidade de qualquer análise: <b>O Dado</b>.</p>
-                    <p style="font-size: 22px; margin-top: 15px;">Um dado isolado não diz nada. Ele é apenas um registro bruto (um número, uma palavra, um sinal). Nosso objetivo na Qualidade é transformar esse rastro em decisões.</p>
+                    <h2 class="title-sm no-border mb-20" style="line-height: 1.2;">A Matéria-Prima <br><span class="text-blue">do Conhecimento</span></h2>
+                    <p class="text-lg">Antes de aplicar métodos estatísticos ou inteligência artificial, precisamos entender a menor unidade de qualquer análise: <b>O Dado</b>.</p>
+                    <p class="text-lg mt-15">Um dado isolado não diz nada. Ele é apenas um registro bruto (um número, uma palavra, um sinal). Nosso objetivo na Qualidade é transformar esse rastro em decisões.</p>
                 </div>
                 <div class="col-right" style="justify-content: center;">
-                    <div class="data-panel" style="border-left: 8px solid #94a3b8; margin-bottom: 15px;">
-                        <h3 style="color:#475569;">1. Dado (O Fato Bruto)</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">Exemplo: "38" ou "Vermelho". Solto no espaço, não tem significado prático.</p>
+                    <div class="data-panel mb-15" style="border-left: 8px solid #94a3b8;">
+                        <h3 class="text-slate">1. Dado (O Fato Bruto)</h3>
+                        <p class="text-md no-margin">Exemplo: "38" ou "Vermelho". Solto no espaço, não tem significado prático.</p>
                     </div>
-                    <div class="data-panel" style="border-left: 8px solid #3b82f6; margin-bottom: 15px; transform: translateX(20px);">
-                        <h3 style="color:#1d4ed8;">2. Informação (Dado com Contexto)</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">Exemplo: "A temperatura da caldeira é 38°C". Agora sabemos do que se trata.</p>
+                    <div class="data-panel mb-15" style="border-left: 8px solid #3b82f6; transform: translateX(20px);">
+                        <h3 class="text-dark-blue">2. Informação (Dado com Contexto)</h3>
+                        <p class="text-md no-margin">Exemplo: "A temperatura da caldeira é 38°C". Agora sabemos do que se trata.</p>
                     </div>
                     <div class="data-panel" style="border-left: 8px solid #10b981; transform: translateX(40px);">
-                        <h3 style="color:#047857;">3. Conhecimento (Informação com Regra)</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">Exemplo: "38°C está acima do limite seguro de 35°C. A caldeira está superaquecendo."</p>
+                        <h3 class="text-green">3. Conhecimento (Informação com Regra)</h3>
+                        <p class="text-md no-margin">Exemplo: "38°C está acima do limite seguro de 35°C. A caldeira está superaquecendo."</p>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- ================= SLIDE 2: DADO VS INFORMAÇÃO ================= -->
         <div class="slide" id="s2">
             <div class="slide-header">
-                <h2>Do Caos à Ordem: Dado vs. Informação <span class="badge bg-blue" style="font-size: 26px; padding: 5px 12px;">Processamento</span></h2>
+                <h2>Do Caos à Ordem: Dado vs. Informação <span class="badge bg-blue badge-lg">Processamento</span></h2>
                 <p>Veja como números isolados e sem sentido ganham valor quando são contextualizados e estruturados.</p>
             </div>
             <div class="row">
@@ -55,61 +56,63 @@
                     <div class="info-box" id="msg-s2">Estes números representam o diâmetro de eixos produzidos hoje. Assim, espalhados, é impossível saber se a produção foi boa ou ruim.</div>
                 </div>
                 <div class="col-right" style="justify-content: center;">
-                    <h3 style="font-size: 28px; color: #0f172a; margin-bottom: 20px;">O Poder do Contexto</h3>
+                    <h3 class="text-xl text-dark mb-20">O Poder do Contexto</h3>
                     <p>Coletar dados sem organizá-los é como guardar peças de um quebra-cabeça em uma gaveta. A estatística básica (que veremos nos próximos módulos) serve justamente para montar essa imagem.</p>
-                    <div class="data-panel" style="background: #f8fafc; text-align: center; margin-top: 20px; padding: 30px;">
-                        <button class="btn-action" style="background:#2563eb; font-size: 22px; padding: 15px;" onclick="s2_Transformar()">Processar Dados -> Informação</button>
-                        <button class="btn-action" style="background:#64748b; margin-bottom:0; margin-top: 10px;" onclick="s2_Resetar()">Desorganizar (Voltar ao Caos)</button>
+                    <div class="data-panel mt-20" style="background: #f8fafc; text-align: center; padding: 30px;">
+                        <button class="btn-action btn-lg" style="background:#2563eb;" onclick="s2_Transformar()">Processar Dados -> Informação</button>
+                        <button class="btn-action mt-10 no-margin" style="background:#64748b;" onclick="s2_Resetar()">Desorganizar (Voltar ao Caos)</button>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- ================= SLIDE 3: ESTRUTURADOS VS NÃO ESTRUTURADOS ================= -->
         <div class="slide" id="s3">
             <div class="slide-header">
-                <h2>O Formato: Estruturados vs. Não Estruturados <span class="badge bg-orange" style="font-size: 26px; padding: 5px 12px;">Organização</span></h2>
+                <h2>O Formato: Estruturados vs. Não Estruturados <span class="badge bg-orange badge-lg">Organização</span></h2>
                 <p>Nem todo dado cabe perfeitamente em uma planilha. Hoje, a maior parte das informações geradas na indústria não tem um formato rígido.</p>
             </div>
             <div class="row">
                 <div class="col-left">
                     <div class="stage-area" id="stage-s3" style="background: #f1f5f9;">
                         <div class="type-zone">
-                            <h3 style="color: #2563eb; margin-bottom: 5px;">Estruturados</h3>
-                            <span style="font-size: 14px; color: #64748b;">(Linhas e Colunas)</span>
+                            <h3 class="text-blue mb-5">Estruturados</h3>
+                            <span class="text-sm text-slate">(Linhas e Colunas)</span>
                         </div>
                         <div class="type-zone">
-                            <h3 style="color: #ea580c; margin-bottom: 5px;">Não Estruturados</h3>
-                            <span style="font-size: 14px; color: #64748b;">(Arquivos e Mídia)</span>
+                            <h3 class="text-orange mb-5">Não Estruturados</h3>
+                            <span class="text-sm text-slate">(Arquivos e Mídia)</span>
                         </div>
                     </div>
                     <div class="info-box" id="msg-s3">Os dados estão misturados no servidor da empresa. Clique para classificá-los corretamente.</div>
                 </div>
                 <div class="col-right">
                     <div class="data-panel" style="border-left: 8px solid #2563eb;">
-                        <h3 style="color:#1d4ed8;">Dados Estruturados</h3>
-                        <p style="margin-bottom:0; font-size: 18px;">Têm formato fixo, tabelas, bancos de dados relacionais. São fáceis de pesquisar e analisar matematicamente. (Ex: Excel, SQL).</p>
+                        <h3 class="text-dark-blue">Dados Estruturados</h3>
+                        <p class="text-md no-margin">Têm formato fixo, tabelas, bancos de dados relacionais. São fáceis de pesquisar e analisar matematicamente. (Ex: Excel, SQL).</p>
                     </div>
                     <div class="data-panel" style="border-left: 8px solid #ea580c;">
-                        <h3 style="color:#c2410c;">Dados Não Estruturados</h3>
-                        <p style="margin-bottom:0; font-size: 18px;">Sem formato pré-definido. Requerem IA ou interpretação humana para extrair valor. (Ex: Áudio, Imagem, E-mails).</p>
+                        <h3 class="text-dark-orange">Dados Não Estruturados</h3>
+                        <p class="text-md no-margin">Sem formato pré-definido. Requerem IA ou interpretação humana para extrair valor. (Ex: Áudio, Imagem, E-mails).</p>
                     </div>
                     <div style="margin-top:auto;">
                         <button class="btn-action" style="background:#2563eb;" onclick="s3_Classificar(true)">Organizar Estruturados</button>
                         <button class="btn-action" style="background:#ea580c;" onclick="s3_Classificar(false)">Organizar Não Estruturados</button>
-                        <button class="btn-action" style="background:#64748b; margin-bottom:0;" onclick="s3_Misturar()">Misturar Tudo</button>
+                        <button class="btn-action no-margin" style="background:#64748b;" onclick="s3_Misturar()">Misturar Tudo</button>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- ================= SLIDE 4: QUALIDADE DOS DADOS (GIGO) ================= -->
         <div class="slide" id="s4">
             <div class="slide-header">
-                <h2>O Problema da Sujeira: GIGO <span class="badge bg-red" style="font-size: 26px; padding: 5px 12px;">Garbage In, Garbage Out</span></h2>
+                <h2>O Problema da Sujeira: GIGO <span class="badge bg-red badge-lg">Garbage In, Garbage Out</span></h2>
                 <p>Se você inserir "lixo" no seu sistema de análise (dados errados, nulos ou duplicados), as decisões do painel gerencial também serão "lixo".</p>
             </div>
             <div class="row">
                 <div class="col-left">
-                    <div class="table-container" style="margin-top: 20px;">
+                    <div class="table-container mt-20">
                         <table class="data-table" id="dirty-table">
                             <thead>
                                 <tr><th>ID Lote</th><th>Máquina</th><th>Temperatura</th><th>Status</th></tr>
@@ -123,74 +126,75 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="info-box" id="msg-s4" style="border-left-color: #ef4444; margin-top: 30px;">
+                    <div class="info-box mt-20" id="msg-s4" style="border-left-color: #ef4444;">
                         <b>Dados Sujos:</b> Faltam informações da Máquina, há uma temperatura fisicamente impossível (9999°C) e IDs corrompidos.
                     </div>
                 </div>
                 <div class="col-right">
-                    <h3 style="font-size: 24px; color: #0f172a; margin-bottom: 15px;">Data Cleansing (Limpeza de Dados)</h3>
+                    <h3 class="text-dark mb-15">Data Cleansing (Limpeza de Dados)</h3>
                     <p>Antes de calcular a Média ou o Desvio Padrão, precisamos "higienizar" a base:</p>
-                    <ul style="list-style-type: disc; margin-left: 25px; font-size: 20px; color: #334155; line-height: 1.6; margin-bottom: 25px;">
+                    <ul class="list-disc">
                         <li><b>Completude:</b> Preencher ou descartar campos vazios (NULL).</li>
                         <li><b>Validade:</b> Remover *Outliers* absurdos (ex: 9999°C).</li>
                         <li><b>Consistência:</b> Padronizar formatos e corrigir IDs corrompidos.</li>
                     </ul>
                     <div style="margin-top:auto;">
                         <button class="btn-action" style="background:#10b981;" onclick="s4_Limpar()">Aplicar Filtro de Limpeza</button>
-                        <button class="btn-action" style="background:#64748b; margin-bottom:0;" onclick="s4_Resetar()">Restaurar Dados Originais</button>
+                        <button class="btn-action no-margin" style="background:#64748b;" onclick="s4_Resetar()">Restaurar Dados Originais</button>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- ================= SLIDE 5: O CICLO DE VIDA DO DADO ================= -->
         <div class="slide" id="s5">
             <div class="row">
                 <div class="col-left" style="justify-content: center; padding-left: 20px;">
-                    <!-- Removido font-size: 42px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none;">O Caminho dos Dados<br><span style="color:#2563eb;">O Ciclo de Vida</span></h2>
-                    <p style="font-size: 22px; margin-top:10px;">Os dados não nascem prontos em um gráfico. Eles passam por uma jornada dentro da indústria.</p>
+                    <h2 class="title-sm no-border">O Caminho dos Dados<br><span class="text-blue">O Ciclo de Vida</span></h2>
+                    <p class="text-lg mt-10">Os dados não nascem prontos em um gráfico. Eles passam por uma jornada dentro da indústria.</p>
                 </div>
                 <div class="col-right" style="justify-content: center; gap: 15px;">
-                    <div class="data-panel" style="border-left: 6px solid #475569; padding: 15px; margin-bottom: 0;">
-                        <h3 style="color:#1e293b; margin-bottom: 5px;">&#128225; 1. Coleta (Geração)</h3>
-                        <p style="font-size: 18px; margin:0;">Sensores IoT nas máquinas, preenchimento de planilhas por operadores, leituras de paquímetro.</p>
+                    <div class="data-panel no-margin" style="border-left: 6px solid #475569; padding: 15px;">
+                        <h3 class="text-slate-dark mb-5">&#128225; 1. Coleta (Geração)</h3>
+                        <p class="text-md no-margin">Sensores IoT nas máquinas, preenchimento de planilhas por operadores, leituras de paquímetro.</p>
                     </div>
-                    <div class="data-panel" style="border-left: 6px solid #3b82f6; padding: 15px; margin-bottom: 0;">
-                        <h3 style="color:#1d4ed8; margin-bottom: 5px;">&#128190; 2. Armazenamento e Limpeza</h3>
-                        <p style="font-size: 18px; margin:0;">Salvos em Bancos de Dados (Data Lakes / SQL), onde as anomalias são filtradas.</p>
+                    <div class="data-panel no-margin" style="border-left: 6px solid #3b82f6; padding: 15px;">
+                        <h3 class="text-dark-blue mb-5">&#128190; 2. Armazenamento e Limpeza</h3>
+                        <p class="text-md no-margin">Salvos em Bancos de Dados (Data Lakes / SQL), onde as anomalias são filtradas.</p>
                     </div>
-                    <div class="data-panel" style="border-left: 6px solid #8b5cf6; padding: 15px; margin-bottom: 0;">
-                        <h3 style="color:#6d28d9; margin-bottom: 5px;">&#128200; 3. Análise (Módulos 2 e 3)</h3>
-                        <p style="font-size: 18px; margin:0;">Cálculo de Médias, Dispersão, Capabilidade (Cp/Cpk) e Gráficos de Controle (CEP).</p>
+                    <div class="data-panel no-margin" style="border-left: 6px solid #8b5cf6; padding: 15px;">
+                        <h3 class="text-purple mb-5">&#128200; 3. Análise (Módulos 2 e 3)</h3>
+                        <p class="text-md no-margin">Cálculo de Médias, Dispersão, Capabilidade (Cp/Cpk) e Gráficos de Controle (CEP).</p>
                     </div>
-                    <div class="data-panel" style="border-left: 6px solid #10b981; padding: 15px; margin-bottom: 0;">
-                        <h3 style="color:#047857; margin-bottom: 5px;">&#9989; 4. Ação (Decisão)</h3>
-                        <p style="font-size: 18px; margin:0;">Parar a máquina? Aprovar o lote? Trocar o fornecedor? O dado cumpriu sua missão.</p>
+                    <div class="data-panel no-margin" style="border-left: 6px solid #10b981; padding: 15px;">
+                        <h3 class="text-green mb-5">&#9989; 4. Ação (Decisão)</h3>
+                        <p class="text-md no-margin">Parar a máquina? Aprovar o lote? Trocar o fornecedor? O dado cumpriu sua missão.</p>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- ================= SLIDE 6: PRÓXIMO PASSO ================= -->
         <div class="slide" id="s6">
             <div class="row">
                 <div class="col-left" style="justify-content: center; padding-left: 20px;">
-                    <!-- Removido font-size: 42px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none;">Próximo Módulo: <br><span style="color:#2563eb;">Amostragem e Variáveis</span></h2>
-                    <p style="font-size: 22px; margin-top:10px;">Agora que entendemos o que é um dado e a importância de sua limpeza, precisamos aprender a <b>coletá-lo</b>.</p>
-                    <ul style="list-style-type: none; font-size: 24px; color: #1e293b; line-height: 1.8; margin-top:20px;">
+                    <h2 class="title-sm no-border">Próximo Módulo: <br><span class="text-blue">Amostragem e Variáveis</span></h2>
+                    <p class="text-lg mt-10">Agora que entendemos o que é um dado e a importância de sua limpeza, precisamos aprender a <b>coletá-lo</b>.</p>
+                    <ul class="list-none">
                         <li>&#128230; <b>População vs. Amostra:</b> Inspecionar tudo ou só uma parte?</li>
                         <li>&#127919; <b>O Viés:</b> Como evitar amostras viciadas?</li>
                         <li>&#128207; <b>Variáveis:</b> É uma contagem (discreta) ou medição (contínua)?</li>
                     </ul>
                 </div>
                 <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
-                    <div style="font-size: 130px; margin-bottom:20px; animation: float 3s ease-in-out infinite;">&#128202;</div>
-                    <h3 style="color: #0f172a; font-size:36px;">Preparação Concluída!</h3>
-                    <p style="font-size:22px;">Você já pode avançar para o Módulo sobre a Natureza dos Dados e Técnicas de Amostragem.</p>
+                    <div class="icon-huge">&#128202;</div>
+                    <h3 class="text-xxl text-dark">Preparação Concluída!</h3>
+                    <p class="text-lg">Você já pode avançar para o Módulo sobre a Natureza dos Dados e Técnicas de Amostragem.</p>
                 </div>
             </div>
         </div>
     </div>
+    
     <!-- RODAPÉ FIXO -->
     <div class="footer">
         <button class="btn-nav" id="btnPrev" onclick="mudarSlide(-1)">&#9664; Voltar</button>

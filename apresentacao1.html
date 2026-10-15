@@ -3,10 +3,8 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <!-- É ESTA LINHA AQUI QUE LIGA A RESPONSIVIDADE NO CELULAR: -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aprendendo Qualidade No VBA Excel - Módulo 2</title>
-    <!-- Referência ao arquivo CSS externo -->
     <link rel="stylesheet" href="apresentacao.css">
 </head>
 <body>
@@ -20,18 +18,17 @@
         <div class="slide active" id="s1">
             <div class="row">
                 <div class="col-left" style="justify-content: center; text-align: center; padding: 0 20px;">
-                    <!-- Removido font-size: 46px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none; margin-bottom:20px; line-height: 1.2;">O Alicerce da Qualidade: <br><span style="color:#2563eb;">Os Dados</span></h2>
-                    <p style="font-size: 22px;">Antes de calcularmos Médias, Variâncias ou Capabilidade, precisamos entender a matéria-prima do Controle de Qualidade: <b>A Coleta de Dados</b>.</p>
+                    <h2 class="title-sm no-border mb-20" style="line-height: 1.2;">O Alicerce da Qualidade: <br><span class="text-blue">Os Dados</span></h2>
+                    <p class="text-lg">Antes de calcularmos Médias, Variâncias ou Capabilidade, precisamos entender a matéria-prima do Controle de Qualidade: <b>A Coleta de Dados</b>.</p>
                 </div>
                 <div class="col-right" style="justify-content: center;">
                     <div class="data-panel" style="border-left: 8px solid #10b981;">
-                        <h3 style="color:#047857;">1. A Fonte dos Dados</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">Nós estamos analisando a produção inteira ou apenas uma pequena parcela? (População vs. Amostra)</p>
+                        <h3 class="text-green">1. A Fonte dos Dados</h3>
+                        <p class="text-md no-margin">Nós estamos analisando a produção inteira ou apenas uma pequena parcela? (População vs. Amostra)</p>
                     </div>
                     <div class="data-panel" style="border-left: 8px solid #f59e0b;">
                         <h3 style="color:#b45309;">2. A Natureza da Medição</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">O que estamos anotando na prancheta? É um número exato? Uma contagem? Ou apenas uma classificação de "Bom/Ruim"? (Tipos de Variáveis)</p>
+                        <p class="text-md no-margin">O que estamos anotando na prancheta? É um número exato? Uma contagem? Ou apenas uma classificação de "Bom/Ruim"? (Tipos de Variáveis)</p>
                     </div>
                 </div>
             </div>
@@ -39,28 +36,28 @@
         <!-- ================= SLIDE 2: POPULAÇÃO VS AMOSTRA ================= -->
         <div class="slide" id="s2">
             <div class="slide-header">
-                <h2>População vs. Amostra <span class="badge bg-blue" style="font-size: 26px; padding: 5px 12px;">N / n</span></h2>
+                <h2>População vs. Amostra <span class="badge bg-blue badge-lg">N / n</span></h2>
                 <p><b>População (N):</b> O lote inteiro. Todas as peças produzidas. <br><b>Amostra (n):</b> Uma pequena parcela representativa extraída para inspeção (pois inspecionar 100% é caro e demorado).</p>
             </div>
             <div class="row">
                 <div class="col-left">
                     <div class="pop-container" id="box-s3">
                         <div class="pop-box"><div class="pop-lbl">Lote Total (N=100)</div></div>
-                        <div class="sample-box"><div class="pop-lbl" style="left:auto; right:15px; color:#2563eb;">Bancada (n=12)</div></div>
+                        <div class="sample-box"><div class="pop-lbl text-blue" style="left:auto; right:15px;">Bancada (n=12)</div></div>
                     </div>
                     <div class="info-box" id="msg-s3">Na estatística, calculamos os dados da Amostra (n) para tentar "adivinhar" a realidade da População (N).</div>
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <div class="data-row"><span>Peças no Lote (N):</span> <span class="big-number" id="txt-s3-N" style="color:#64748b;">100</span></div>
-                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
-                            <span>Tamanho da Amostra (n):</span> <span class="big-number" id="txt-s3-n" style="color:#2563eb;">0</span>
+                        <div class="data-row"><span>Peças no Lote (N):</span> <span class="big-number text-slate" id="txt-s3-N">100</span></div>
+                        <div class="data-row no-border no-margin pb-0">
+                            <span>Tamanho da Amostra (n):</span> <span class="big-number text-blue" id="txt-s3-n">0</span>
                         </div>
                     </div>
                     <p style="margin-bottom:auto;">Inspecionar o lote inteiro é impossível se o teste for destrutivo (ex: teste de tração). A amostragem resolve isso.</p>
-                    <div style="margin-top:10px;">
+                    <div class="mt-10">
                         <button class="btn-action" style="background:#2563eb;" onclick="s3_Coletar()">Extrair Amostra Aleatória</button>
-                        <button class="btn-action" style="background:#64748b; margin-bottom:0;" onclick="s3_Reset()">Devolver Peças ao Lote</button>
+                        <button class="btn-action no-margin" style="background:#64748b;" onclick="s3_Reset()">Devolver Peças ao Lote</button>
                     </div>
                 </div>
             </div>
@@ -68,57 +65,57 @@
         <!-- ================= SLIDE 3: TÉCNICAS DE AMOSTRAGEM ================= -->
         <div class="slide" id="s3">
             <div class="slide-header">
-                <h2>Técnicas de Amostragem <span class="badge bg-blue" style="font-size: 26px; padding: 5px 12px;">Probabilística & Não-Probabilística</span></h2>
+                <h2>Técnicas de Amostragem <span class="badge bg-blue badge-lg">Probabilística & Não-Probabilística</span></h2>
                 <p>Como selecionar partes de um conjunto de dados ou população mantendo a representatividade.</p>
             </div>
             <div class="row">
                 <div class="col-left">
                     <div class="sampling-grid" id="samplingGrid"></div>
-                    <div class="info-box" id="samplingInfo" style="margin-top:10px;">
+                    <div class="info-box mt-10" id="samplingInfo">
                         Selecione uma técnica ao lado para visualizar o padrão de escolha na população.
                     </div>
                 </div>
                 <div class="col-right" style="overflow-y: auto; max-height: 480px; padding-right: 5px;">
-                    <h3 style="font-size: 18px; color: #1e3a8a; margin-bottom: 5px;">Amostragens Probabilísticas</h3>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px;" onclick="s4_SimularAmostragem('simples')">Aleatória Simples</button>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px;" onclick="s4_SimularAmostragem('sistematica')">Sistemática (Intervalos)</button>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px;" onclick="s4_SimularAmostragem('estratificada')">Estratificada (Subgrupos)</button>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px;" onclick="s4_SimularAmostragem('conglomerado')">Por Conglomerado</button>
-                    <h3 style="font-size: 18px; color: #9333ea; margin-top: 15px; margin-bottom: 5px;">Amostragens Não-Probabilísticas</h3>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px; background: #6b21a8;" onclick="s4_SimularAmostragem('conveniencia')">Por Conveniência</button>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px; background: #6b21a8;" onclick="s4_SimularAmostragem('julgamento')">Por Julgamento / Intencional</button>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px; background: #6b21a8;" onclick="s4_SimularAmostragem('cotas')">Por Cotas</button>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px; background: #6b21a8;" onclick="s4_SimularAmostragem('bolaneve')">Bola de Neve (Snowball)</button>
-                    <button class="btn-action" style="padding: 8px 10px; font-size: 15px; background: #6b21a8; margin-bottom:0;" onclick="s4_SimularAmostragem('desproporcional')">Desproporcional</button>
+                    <h3 class="text-md text-dark-blue mb-5">Amostragens Probabilísticas</h3>
+                    <button class="btn-action text-sm" style="padding: 8px 10px;" onclick="s4_SimularAmostragem('simples')">Aleatória Simples</button>
+                    <button class="btn-action text-sm" style="padding: 8px 10px;" onclick="s4_SimularAmostragem('sistematica')">Sistemática (Intervalos)</button>
+                    <button class="btn-action text-sm" style="padding: 8px 10px;" onclick="s4_SimularAmostragem('estratificada')">Estratificada (Subgrupos)</button>
+                    <button class="btn-action text-sm" style="padding: 8px 10px;" onclick="s4_SimularAmostragem('conglomerado')">Por Conglomerado</button>
+                    <h3 class="text-md text-purple mt-15 mb-5">Amostragens Não-Probabilísticas</h3>
+                    <button class="btn-action text-sm" style="padding: 8px 10px; background: #6b21a8;" onclick="s4_SimularAmostragem('conveniencia')">Por Conveniência</button>
+                    <button class="btn-action text-sm" style="padding: 8px 10px; background: #6b21a8;" onclick="s4_SimularAmostragem('julgamento')">Por Julgamento / Intencional</button>
+                    <button class="btn-action text-sm" style="padding: 8px 10px; background: #6b21a8;" onclick="s4_SimularAmostragem('cotas')">Por Cotas</button>
+                    <button class="btn-action text-sm" style="padding: 8px 10px; background: #6b21a8;" onclick="s4_SimularAmostragem('bolaneve')">Bola de Neve (Snowball)</button>
+                    <button class="btn-action text-sm no-margin" style="padding: 8px 10px; background: #6b21a8;" onclick="s4_SimularAmostragem('desproporcional')">Desproporcional</button>
                 </div>
             </div>
         </div>
         <!-- ================= SLIDE 4: O VIÉS / AMOSTRAGEM VICIADA ================= -->
         <div class="slide" id="s4">
             <div class="slide-header">
-                <h2>O Perigo do Viés (Amostragem Viciada) <span class="badge bg-red" style="font-size: 26px; padding: 5px 12px;">&#9888;</span></h2>
+                <h2>O Perigo do Viés (Amostragem Viciada) <span class="badge bg-red badge-lg">&#9888;</span></h2>
                 <p>Se a amostra não for <b>Aleatória</b>, ela mente. Pegar as peças só do topo da caixa ou só do primeiro turno esconde os problemas reais.</p>
             </div>
             <div class="row">
                 <div class="col-left">
                     <div class="pop-container" id="box-s2" style="background:#f1f5f9; border-color:#ef4444;">
                         <div class="pop-box"><div class="pop-lbl">Produção c/ Defeitos</div></div>
-                        <div class="sample-box"><div class="pop-lbl" style="left:auto; right:15px; color:#ef4444;">Inspeção</div></div>
+                        <div class="sample-box"><div class="pop-lbl text-red" style="left:auto; right:15px;">Inspeção</div></div>
                     </div>
                     <div class="info-box" id="msg-s2" style="border-left-color: #ef4444;">População com 20% de refugo escondido no fundo. Se não misturar, a amostragem falha.</div>
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <div class="data-row"><span>Defeitos Reais (Lote):</span> <span class="big-number" style="color:#64748b;">20%</span></div>
-                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
-                            <span>Defeitos na Amostra:</span> <span class="big-number" id="txt-s2-def" style="color:#ef4444;">0%</span>
+                        <div class="data-row"><span>Defeitos Reais (Lote):</span> <span class="big-number text-slate">20%</span></div>
+                        <div class="data-row no-border no-margin pb-0">
+                            <span>Defeitos na Amostra:</span> <span class="big-number text-red" id="txt-s2-def">0%</span>
                         </div>
                     </div>
                     <p style="margin-bottom:auto;">Simule uma coleta viciada (pegando só do topo) vs. coleta aleatória:</p>
-                    <div style="margin-top:10px;">
+                    <div class="mt-10">
                         <button class="btn-action" style="background:#ef4444;" onclick="s2_Coletar(true)">Amostragem Viciada (Só Topo)</button>
                         <button class="btn-action" style="background:#10b981;" onclick="s2_Coletar(false)">Amostragem Aleatória (Misturada)</button>
-                        <button class="btn-action" style="background:#64748b; margin-bottom:0;" onclick="s2_Reset()">Devolver Peças</button>
+                        <button class="btn-action no-margin" style="background:#64748b;" onclick="s2_Reset()">Devolver Peças</button>
                     </div>
                 </div>
             </div>
@@ -127,19 +124,18 @@
         <div class="slide" id="s5">
             <div class="row">
                 <div class="col-left" style="justify-content: center; padding-left: 20px;">
-                    <!-- Removido font-size: 42px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none;">O que estamos medindo?<br><span style="color:#2563eb;">O Conceito de Variável</span></h2>
-                    <p style="font-size: 22px; margin-top:10px;">Uma variável é qualquer característica de uma peça ou processo que pode sofrer <b>variação</b>.</p>
-                    <p style="font-size: 22px;">Na qualidade, dividimos as variáveis em dois mundos completamente diferentes:</p>
+                    <h2 class="title-sm no-border">O que estamos medindo?<br><span class="text-blue">O Conceito de Variável</span></h2>
+                    <p class="text-lg mt-10">Uma variável é qualquer característica de uma peça ou processo que pode sofrer <b>variação</b>.</p>
+                    <p class="text-lg">Na qualidade, dividimos as variáveis em dois mundos completamente diferentes:</p>
                 </div>
                 <div class="col-right" style="justify-content: center;">
-                    <div class="data-panel" style="border-left: 8px solid #f59e0b; margin-bottom:20px;">
+                    <div class="data-panel mb-20" style="border-left: 8px solid #f59e0b;">
                         <h3 style="color:#b45309;">Variáveis Qualitativas (Atributos)</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">Representam categorias, qualidades ou rótulos. <br><i>Ex: Tipo de defeito, Turno, Máquina (A ou B).</i></p>
+                        <p class="text-md no-margin">Representam categorias, qualidades ou rótulos. <br><i>Ex: Tipo de defeito, Turno, Máquina (A ou B).</i></p>
                     </div>
                     <div class="data-panel" style="border-left: 8px solid #10b981;">
-                        <h3 style="color:#047857;">Variáveis Quantitativas (Numéricas)</h3>
-                        <p style="margin-bottom:0; font-size: 19px;">Representam quantidades exatas medidas com instrumentos.<br><i>Ex: Peso (Kg), Comprimento (mm), Temperatura (°C).</i></p>
+                        <h3 class="text-green">Variáveis Quantitativas (Numéricas)</h3>
+                        <p class="text-md no-margin">Representam quantidades exatas medidas com instrumentos.<br><i>Ex: Peso (Kg), Comprimento (mm), Temperatura (°C).</i></p>
                     </div>
                 </div>
             </div>
@@ -147,7 +143,7 @@
         <!-- ================= SLIDE 6: QUALITATIVAS ================= -->
         <div class="slide" id="s6">
             <div class="slide-header">
-                <h2>Variáveis Qualitativas (Atributos) <span class="badge bg-orange" style="font-size: 26px; padding: 5px 12px;">Categorias</span></h2>
+                <h2>Variáveis Qualitativas (Atributos) <span class="badge bg-orange badge-lg">Categorias</span></h2>
                 <p>Dados que não faz sentido somar ou tirar média. Subdividem-se em duas:</p>
             </div>
             <div class="row">
@@ -161,15 +157,15 @@
                 </div>
                 <div class="col-right">
                     <div class="data-panel">
-                        <h3 style="color:#2563eb;">1. Nominal</h3>
-                        <p style="font-size: 17px; margin-bottom: 10px;">Apenas nomes. Não existe hierarquia. (Ex: Máquina A, B ou C).</p>
-                        <h3 style="color:#10b981; border-top:1px solid #e2e8f0; padding-top:10px;">2. Ordinal</h3>
-                        <p style="font-size: 17px; margin-bottom: 0;">Existe uma ordem clara de grandeza. (Ex: Tamanho P, M, G).</p>
+                        <h3 class="text-blue">1. Nominal</h3>
+                        <p style="font-size: 17px;" class="mb-10">Apenas nomes. Não existe hierarquia. (Ex: Máquina A, B ou C).</p>
+                        <h3 class="text-green" style="border-top:1px solid #e2e8f0; padding-top:10px;">2. Ordinal</h3>
+                        <p style="font-size: 17px;" class="no-margin">Existe uma ordem clara de grandeza. (Ex: Tamanho P, M, G).</p>
                     </div>
                     <div style="margin-top:auto;">
                         <button class="btn-action" style="background:#2563eb;" onclick="s6_OrdenarNominal()">Classificar Nominal (Por Cor)</button>
                         <button class="btn-action" style="background:#10b981;" onclick="s6_OrdenarOrdinal()">Classificar Ordinal (Por Tamanho)</button>
-                        <button class="btn-action" style="background:#64748b; margin-bottom:0;" onclick="s6_Misturar()">Misturar Peças</button>
+                        <button class="btn-action no-margin" style="background:#64748b;" onclick="s6_Misturar()">Misturar Peças</button>
                     </div>
                 </div>
             </div>
@@ -177,7 +173,7 @@
         <!-- ================= SLIDE 7: QUANTITATIVAS ================= -->
         <div class="slide" id="s7">
             <div class="slide-header">
-                <h2>Variáveis Quantitativas (Numéricas) <span class="badge bg-green" style="font-size: 26px; padding: 5px 12px;">#</span></h2>
+                <h2>Variáveis Quantitativas (Numéricas) <span class="badge bg-green badge-lg">#</span></h2>
                 <p>Aqui nascem as cartas de controle de precisão e a Capabilidade. Números reais que medimos ou contamos.</p>
             </div>
             <div class="row">
@@ -195,7 +191,7 @@
                             <div class="scale-marker" id="mark-disc" style="background:#f59e0b; left:0%;"></div>
                         </div>
                     </div>
-                    <h3 style="font-size: 20px; color:#047857;">2. Contínua (Medição)</h3>
+                    <h3 style="font-size: 20px;" class="text-green">2. Contínua (Medição)</h3>
                     <p style="font-size: 16px;">Frações infinitas. Depende da precisão do instrumento. Ex: 50.1mm, Peso.</p>
                     <div class="quanti-area continua">
                         <div class="scale-track" id="track-cont">
@@ -207,18 +203,18 @@
                     </div>
                 </div>
                 <div class="col-right">
-                    <div class="data-panel" style="margin-bottom:10px;">
-                        <div class="data-row"><span>Contagem (Discreta):</span> <span class="big-number" id="txt-disc" style="color:#f59e0b;">0</span></div>
-                        <div class="data-row" style="margin-bottom:0; border:none; padding-bottom:0;">
-                            <span>Medição (Contínua):</span> <span class="big-number" id="txt-cont" style="color:#10b981;">50.500 mm</span>
+                    <div class="data-panel mb-10">
+                        <div class="data-row"><span>Contagem (Discreta):</span> <span class="big-number text-orange" id="txt-disc">0</span></div>
+                        <div class="data-row no-border no-margin pb-0">
+                            <span>Medição (Contínua):</span> <span class="big-number text-green" id="txt-cont">50.500 mm</span>
                         </div>
                     </div>
-                    <div class="info-box" style="margin-top:0; margin-bottom:auto;">
+                    <div class="info-box no-margin" style="margin-bottom:auto;">
                         <b>CEP Moderno foca nas Contínuas.</b><br> Controlar "número de peças ruins" avisa que a casa pegou fogo. Controlar "fração do milímetro" previne o incêndio.
                     </div>
-                    <div style="display:flex; gap:10px; margin-top:10px;">
-                        <button class="btn-action" style="background:#f59e0b; width:50%; margin-bottom:0;" onclick="s7_StepDisc()">+ 1 Defeito</button>
-                        <button class="btn-action" style="background:#10b981; width:50%; margin-bottom:0;" onclick="s7_SlideCont()">Medir (Paquímetro)</button>
+                    <div class="mt-10" style="display:flex; gap:10px;">
+                        <button class="btn-action no-margin" style="background:#f59e0b; width:50%;" onclick="s7_StepDisc()">+ 1 Defeito</button>
+                        <button class="btn-action no-margin" style="background:#10b981; width:50%;" onclick="s7_SlideCont()">Medir (Paquímetro)</button>
                     </div>
                 </div>
             </div>
@@ -227,19 +223,18 @@
         <div class="slide" id="s8">
             <div class="row">
                 <div class="col-left" style="justify-content: center; padding-left: 20px;">
-                    <!-- Removido font-size: 42px inline e adicionada classe title-sm -->
-                    <h2 class="title-sm" style="border:none;">Próximo Módulo: <br><span style="color:#2563eb;">Capabilidade (Cp e Cpk)</span></h2>
-                    <p style="font-size: 22px; margin-top:10px;">Agora o círculo está completo. Dominamos:</p>
-                    <ul style="list-style-type: none; font-size: 24px; color: #1e293b; line-height: 1.8; margin-top:20px;">
+                    <h2 class="title-sm no-border">Próximo Módulo: <br><span class="text-blue">Capabilidade (Cp e Cpk)</span></h2>
+                    <p class="text-lg mt-10">Agora o círculo está completo. Dominamos:</p>
+                    <ul class="list-none">
                         <li>&#127919; <b>O Alvo (Média, Mediana)</b></li>
                         <li>&#128207; <b>A Dispersão (Desvio Padrão, Formato)</b></li>
                         <li>&#128202; <b>A Natureza dos Dados (Amostra, Técnicas, Variáveis)</b></li>
                     </ul>
                 </div>
                 <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
-                    <div style="font-size: 130px; margin-bottom:20px; animation: float 3s ease-in-out infinite;">&#127981;</div>
-                    <h3 style="color: #0f172a; font-size:36px;">Preparados para o Chão de Fábrica!</h3>
-                    <p style="font-size:22px;">No próximo treinamento, vamos cruzar a <b>Curva da Máquina</b> com as <b>Exigências do Cliente (LSE e LIE)</b>.</p>
+                    <div class="icon-huge">&#127981;</div>
+                    <h3 class="text-xxl text-dark">Preparados para o Chão de Fábrica!</h3>
+                    <p class="text-lg">No próximo treinamento, vamos cruzar a <b>Curva da Máquina</b> com as <b>Exigências do Cliente (LSE e LIE)</b>.</p>
                 </div>
             </div>
         </div>
@@ -252,7 +247,6 @@
     </div>
 </div>
 
-<!-- Referência ao arquivo JS externo -->
 <script src="apresentacao1.js"></script>
 <script src="analytics.js"></script>
 
