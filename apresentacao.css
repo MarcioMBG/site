@@ -283,7 +283,7 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 
 /* ================= RESPONSIVIDADE (SMARTPHONES E TABLETS) ================= */
 @media (max-width: 900px) {
-    .header { padding: 0 15px; font-size: 22px; height: 60px; }
+    .header { padding: 0 15px; font-size: 22px; height: 80px; }
     .footer { padding: 0 15px; height: 80px; }
     .slide { padding: 15px 20px; }
     
@@ -327,4 +327,17 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
         min-height: 250px;
         flex-wrap: wrap;
     }
+      
 }
+  /* ================= ADIÇÃO PARA O SUBTÍTULO DO CABEÇALHO ================= */
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .header-subtitle {
+        font-size: 12px;
+        font-weight: normal;
+        color: #93c5fd; /* Azul claro elegante para o rodapé do título */
+        margin-top: -1px;
+    }
