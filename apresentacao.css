@@ -327,8 +327,20 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
         min-height: 250px;
         flex-wrap: wrap;
     }
-      
+    
+    /* Corrige o corte da coluna direita no Slide 3 e ajusta o grid */
+    #s3 .col-right { 
+        max-height: none !important; 
+        overflow-y: visible !important; 
+    }
+    
+    .sampling-grid, .quali-area { 
+        height: auto !important; 
+        min-height: 250px; 
+    }
 }
+
+
   /* ================= ADIÇÃO PARA O SUBTÍTULO DO CABEÇALHO ================= */
     .header-content {
         display: flex;
