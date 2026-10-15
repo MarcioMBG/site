@@ -117,10 +117,3 @@ function s4_Resetar() {
     document.getElementById('msg-s4').style.borderLeftColor = '#ef4444';
 }
 atualizarNavegacao();
-document.addEventListener('click', function() {
-if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch(function(erro) {
-        console.log("O ecrã inteiro foi bloqueado: " + erro.message);
-    });
-}
-}, { once: true });
