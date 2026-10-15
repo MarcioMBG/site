@@ -63,6 +63,23 @@ body {
 /* Tipografia e Componentes Gerais */
 h2 { color: #0f172a; font-size: 38px; margin-bottom: 12px; border-bottom: 3px solid #e2e8f0; padding-bottom: 8px;}
 h3 { color: #1e293b; font-size: 24px; margin-bottom: 8px; }
+
+/* ================= TÍTULOS SECUNDÁRIOS / MENORES ================= */
+/* Classe para aplicar em qualquer h1 ou h2 que deva ser menor */
+.title-sm, h2.small {
+    font-size: 26px; /* Altere para o tamanho desejado (o h2 padrão é 38px) */
+    margin-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+}
+
+/* Ajuste proporcional para Smartphones (DENTRO do @media max-width: 900px) */
+@media (max-width: 900px) {
+    .title-sm, h2.small {
+        font-size: 20px;
+    }
+}
+
 p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 .highlight { color: #2563eb; font-weight: bold; }
 .badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-weight: bold; color: white; font-size: 16px; margin-left: 8px; vertical-align: middle;}
