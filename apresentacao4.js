@@ -136,10 +136,3 @@ function s4_SetCpk(posicao) {
 
 atualizarNavegacao();
 
-document.addEventListener('click', function() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(function(erro) {
-            console.log("O ecrã inteiro foi bloqueado: " + erro.message);
-        });
-    }
-}, { once: true });
