@@ -61,24 +61,18 @@ body {
 .col-right { width: 48%; display: flex; flex-direction: column; justify-content: flex-start; position: relative;}
 
 /* Tipografia e Componentes Gerais */
-h2 { color: #0f172a; font-size: 38px; margin-bottom: 12px; border-bottom: 3px solid #e2e8f0; padding-bottom: 8px;}
+h1 { color: #0f172a; font-size: 42px; margin-bottom: 12px; border-bottom: 3px solid #e2e8f0; padding-bottom: 8px; }
+h2 { color: #0f172a; font-size: 38px; margin-bottom: 12px; border-bottom: 3px solid #e2e8f0; padding-bottom: 8px; }
 h3 { color: #1e293b; font-size: 24px; margin-bottom: 8px; }
 
 /* ================= TÍTULOS SECUNDÁRIOS / MENORES ================= */
-/* Classe para aplicar em qualquer h1 ou h2 que deva ser menor */
-.title-sm, h2.small {
-    font-size: 26px; /* Altere para o tamanho desejado (o h2 padrão é 38px) */
+.title-sm, h1.small, h2.small {
+    font-size: 26px;
     margin-bottom: 10px;
     border-bottom: 2px solid #e2e8f0;
     padding-bottom: 6px;
 }
 
-/* Ajuste proporcional para Smartphones (DENTRO do @media max-width: 900px) */
-@media (max-width: 900px) {
-    .title-sm, h2.small {
-        font-size: 20px;
-    }
-}
 
 p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 .highlight { color: #2563eb; font-weight: bold; }
@@ -277,8 +271,13 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
     }
     .col-left, .col-right { width: 100%; } /* Colunas ocupam 100% da tela */
     
+    h1 { font-size: 32px; }
     h2 { font-size: 28px; }
     h3 { font-size: 20px; }
+    .title-sm, h1.small, h2.small {
+        font-size: 20px;
+    }
+    
     p { font-size: 16px; }
     .data-row { font-size: 18px; }
     .big-number { font-size: 24px; }
