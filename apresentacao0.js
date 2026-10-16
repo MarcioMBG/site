@@ -43,7 +43,7 @@ function s2_Transformar() {
         item.style.padding = '2px 0'; item.style.display = 'flex'; item.style.alignItems = 'flex-start';
         item.style.justifyContent = 'center'; item.style.fontSize = '14px'; item.style.width = '30px';
     }
-    document.getElementById('msg-s2').innerHTML = '<b>Ordem estabelecida!</b> Ao organizarmos os dados (Gráfico de Barras), a informação salta aos olhos: A maior parte das peças está próxima a 45-60mm.';
+    document.getElementById('msg-s2').innerHTML = '<b>Ordem estabelecida!</b> Ao organizarmos os dados do menor para o maior diâmetro, a informação salta aos olhos: conseguimos identificar rapidamente os valores atípicos (como as peças de 10mm e 90mm) e entender a variação da produção.';
 }
 function s2_Resetar() {
     if(!transformadoS2) return; transformadoS2 = false;
