@@ -280,6 +280,44 @@ p { color: #334155; font-size: 20px; line-height: 1.4; margin-bottom: 12px; }
 }
 
 
+/* ================= CLASSES DE SUPORTE AO SVG DO MÓDULO 8 ================= */
+/* Transição e cursor nos grupos de espinhas */
+.espinha {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Animação na linha ao passar o mouse */
+.espinha:hover line {
+    stroke: #1d4ed8;
+    stroke-width: 4.5;
+}
+
+/* Animação e destaque no retângulo (caixa do M) */
+.espinha:hover rect {
+    fill: #2563eb;
+    stroke: #1e40af;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0px 4px 6px rgba(37, 99, 235, 0.3));
+}
+
+/* Mudança na cor do texto ao passar o mouse */
+.espinha:hover text {
+    fill: #ffffff;
+}
+
+/* Opcional: Animação suave para a cabeça (efeito do problema) */
+.cabeca-efeito {
+    transition: transform 0.3s ease;
+}
+.cabeca-efeito:hover {
+    transform: scale(1.03);
+    transform-origin: center;
+}
+
+
+
 /* Toast Popup */
 #toast {
     position: fixed; bottom: 105px; right: 30px;
