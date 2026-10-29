@@ -296,9 +296,16 @@ function s3_Render() {
     var stats = calcEstaticaLinear(s3_dataBase);
     renderizarSVG('svg-s3', s3_dataBase, stats, {minX: 150, maxX: 220, minY: 45, maxY: 55});
 
+    // Atualiza os textos do painel
     document.getElementById('txt-s3-b').innerText = stats.b.toFixed(3);
     document.getElementById('txt-s3-a').innerText = stats.a.toFixed(2);
     document.getElementById('txt-s3-r2').innerText = (stats.r2 * 100).toFixed(1) + "%";
+
+    // Atualiza os valores direto dentro da fórmula HTML pura
+    var eqA = document.getElementById('eq-s3-a');
+    var eqB = document.getElementById('eq-s3-b');
+    if (eqA) eqA.innerText = stats.a.toFixed(2);
+    if (eqB) eqB.innerText = stats.b.toFixed(3);
 }
 
 function s3_AdicionarRuido() {

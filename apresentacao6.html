@@ -7,6 +7,7 @@
     <title>Aprendendo Qualidade No VBA Excel - Módulo 7: Correlação e Regressão Linear</title>
     <!-- Referência exclusiva ao CSS global -->
     <link rel="stylesheet" href="apresentacao.css">
+
 </head>
 <body>
 
@@ -99,9 +100,11 @@
         </div>
         <div class="row">
             <div class="col-left">
-                <div class="formula-box">
-                     \hat{Y} = \mathbf{a} + \mathbf{b} \cdot X 
+    
+                <div class="formula-box" id="formula-s3">
+                    <span style="position: relative; display: inline-block;">Y<span style="position: absolute; top: -0.6em; left: 50%; transform: translateX(-50%); font-size: 0.85em;">^</span></span> = <b id="eq-s3-a">27.35</b> + <b id="eq-s3-b">0.124</b> · X
                 </div>
+
                 <div class="data-panel mt-10">
                     <div class="data-row">
                         <span>Inclinação ( b  / Slope):</span>
