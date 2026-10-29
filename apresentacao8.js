@@ -11,13 +11,17 @@ function atualizarNavegacao() {
 
 function mudarSlide(direcao) {
     if (direcao === 1 && slideAtual === totalSlides) { 
-        exibirToast("🎓 Módulo 9 Concluído com Sucesso!");
+        exibirToast("🎓 Módulo 9 Concluído! Redirecionando para o início...");
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 2000);
         return; 
     }
     if (direcao === -1 && slideAtual === 1) { 
         window.location.href = 'apresentacao7.html'; 
         return; 
     }
+
     
     document.getElementById('s' + slideAtual).classList.remove('active');
     slideAtual += direcao;
