@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendendo Qualidade No VBA Excel - Módulo 7: Correlação e Regressão Linear</title>
+    <!-- Referência exclusiva ao CSS global -->
+    <link rel="stylesheet" href="apresentacao.css">
+</head>
+<body>
+
+<div id="app">
+<!-- CABEÇALHO DINÂMICO -->
+<div class="header">
+    <div class="header-content">
+        <span>Aprendendo Qualidade</span>
+        <span class="header-subtitle">Treinamento desenvolvido por Márcio Barbosa Gonçalves</span>
+    </div>
+    <div class="header-content" style="text-align: right;">
+        <span>📈 Correlação e Regressão Linear</span>
+        <span class="header-subtitle">Módulo 7</span>
+    </div>
+</div>
+
+<!-- ÁREA DOS SLIDES -->
+<div class="slide-container">
+
+    <!-- ================= SLIDE 1: INTRODUÇÃO À CAUSA E EFEITO ================= -->
+    <div class="slide active" id="s1">
+        <div class="slide-header">
+            <h2>Causa e Efeito: O Diagrama de Dispersão <span class="badge bg-blue">Fundamentos</span></h2>
+            <p>Na Engenharia da Qualidade, nem todas as variáveis caminham isoladas. Investigamos como uma variável de processo afeta o produto.</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <div class="data-panel" style="border-left: 8px solid #2563eb;">
+                    <h3 class="text-blue" style="font-weight:bold;">1. Variável Causa (X - Independente)</h3>
+                    <p class="text-md no-margin">É o parâmetro controlado na máquina ou processo. Exemplo: <i>Temperatura da Injetora (°C)</i>, <i>Velocidade do Eixo (RPM)</i> ou <i>Tempo de Cura (min)</i>.</p>
+                </div>
+                <div class="data-panel mt-10" style="border-left: 8px solid #10b981;">
+                    <h3 class="text-green" style="font-weight:bold;">2. Variável Efeito (Y - Dependente)</h3>
+                    <p class="text-md no-margin">É a característica de qualidade medida na peça. Exemplo: <i>Diâmetro do Eixo (mm)</i>, <i>Rugosidade</i> ou <i>Resistência à Tração (MPa)</i>.</p>
+                </div>
+                <div class="info-box" id="msg-s1">
+                    Selecione um cenário à direita para observar como os pontos se comportam no gráfico cartesiano X vs Y.
+                </div>
+            </div>
+            <div class="col-right">
+                <svg class="chart-svg" id="svg-s1" viewBox="0 0 500 280"></svg>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px;">
+                    <button class="btn-action text-sm" style="background:#2563eb; margin-bottom:0;" onclick="s1_CarregarCenario('temp')">Temp. vs Diâmetro</button>
+                    <button class="btn-action text-sm" style="background:#ea580c; margin-bottom:0;" onclick="s1_CarregarCenario('corte')">Velocidade vs Desgaste</button>
+                    <button class="btn-action text-sm" style="background:#64748b; margin-bottom:0;" onclick="s1_CarregarCenario('ruido')">Hora vs Diâmetro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 2: PEARSON (r) ================= -->
+    <div class="slide" id="s2">
+        <div class="slide-header">
+            <h2>Coeficiente de Correlação de Pearson ( r ) <span class="badge bg-purple">Métrica Estatística</span></h2>
+            <p>O valor de  r  quantifica a força e a direção da relação linear entre duas variáveis em uma escala de **-1.00 a +1.00**.</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 15px;">
+                    <button class="btn-action text-sm" style="background:#10b981; margin-bottom:0;" onclick="s2_Carregar('pos')">Forte Positiva (r ≈ +0.96)</button>
+                    <button class="btn-action text-sm" style="background:#ef4444; margin-bottom:0;" onclick="s2_Carregar('neg')">Forte Negativa (r ≈ -0.92)</button>
+                    <button class="btn-action text-sm" style="background:#f59e0b; margin-bottom:0;" onclick="s2_Carregar('nula')">Nula / Nula (r ≈ 0.02)</button>
+                    <button class="btn-action text-sm" style="background:#8b5cf6; margin-bottom:0;" onclick="s2_Carregar('curva')">Não Linear (Curva)</button>
+                </div>
+                <div class="data-panel" id="panel-s2-stat">
+                    <div class="data-row">
+                        <span>Coeficiente de Pearson ( r ):</span>
+                        <span class="big-number text-blue" id="txt-s2-r">+0.96</span>
+                    </div>
+                    <div class="data-row no-border no-margin" style="padding-bottom:0;">
+                        <span>Classificação:</span>
+                        <span class="text-lg" style="font-weight:bold;" id="txt-s2-class">Forte Correlação Positiva</span>
+                    </div>
+                </div>
+                <div class="info-box" id="msg-s2">
+                    <b>Atenção:</b> Correlação indica associação matemática, mas <i>não prova causalidade direta</i> sem validação de engenharia!
+                </div>
+            </div>
+            <div class="col-right">
+                <svg class="chart-svg" id="svg-s2" viewBox="0 0 500 280"></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 3: REGRESSÃO LINEAR ================= -->
+    <div class="slide" id="s3">
+        <div class="slide-header">
+            <h2>Regressão Linear Simples ( y = a + bx ) <span class="badge bg-blue">Reta dos Mínimos Quadrados</span></h2>
+            <p>Enquanto a correlação mede a força da associação, a **Regressão Linear** cria um modelo matemático preditivo.</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <div class="formula-box">
+                     \hat{Y} = \mathbf{a} + \mathbf{b} \cdot X 
+                </div>
+                <div class="data-panel mt-10">
+                    <div class="data-row">
+                        <span>Inclinação ( b  / Slope):</span>
+                        <span class="text-blue" style="font-weight:bold;" id="txt-s3-b">0.124</span>
+                    </div>
+                    <div class="data-row">
+                        <span>Intercepto ( a  / Intercept):</span>
+                        <span class="text-slate-dark" style="font-weight:bold;" id="txt-s3-a">27.35</span>
+                    </div>
+                    <div class="data-row no-border no-margin" style="padding-bottom:0;">
+                        <span>Coef. de Determinação ( R^2 ):</span>
+                        <span class="big-number text-green" id="txt-s3-r2">92.4%</span>
+                    </div>
+                </div>
+                <div class="info-box" id="msg-s3">
+                     R^2  representa a porcentagem da variação de Y explicada pela variação de X. Aqui, **92.4%** do diâmetro é explicado pela temperatura!
+                </div>
+            </div>
+            <div class="col-right">
+                <svg class="chart-svg" id="svg-s3" viewBox="0 0 500 280"></svg>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn-action" style="background:#2563eb; flex:1; margin-bottom:0;" onclick="s3_AdicionarRuido()">Injetar Variação</button>
+                    <button class="btn-action" style="background:#64748b; flex:1; margin-bottom:0;" onclick="s3_Reset()">Restaurar Padrão</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 4: EFEITO DE OUTLIERS ================= -->
+    <div class="slide" id="s4">
+        <div class="slide-header">
+            <h2>O Impacto Devastador de Outliers <span class="badge bg-red">Sensibilidade da Regressão</span></h2>
+            <p>A regressão por Mínimos Quadrados minimiza o erro quadrático, tornando-a **extremamente sensível a pontos discrepantes**.</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <div class="data-panel" id="panel-s4-compare">
+                    <h3 class="text-slate-dark mb-10" style="font-weight:bold;">Comparativo Sem vs Com Outlier</h3>
+                    <div class="data-row">
+                        <span> R^2  Sem Outlier (Verde):</span>
+                        <span class="text-green" style="font-weight:bold;" id="txt-s4-r2-clean">91.8%</span>
+                    </div>
+                    <div class="data-row">
+                        <span> R^2  Com Outlier (Vermelho):</span>
+                        <span class="text-red" style="font-weight:bold;" id="txt-s4-r2-dirty">34.2%</span>
+                    </div>
+                    <div class="data-row no-border no-margin" style="padding-bottom:0;">
+                        <span>Variação de Inclinacao ( b ):</span>
+                        <span style="font-weight:bold; color:#d97706;" id="txt-s4-slope-shift">+240%</span>
+                    </div>
+                </div>
+                <div class="mt-10">
+                    <button class="btn-action" id="btn-toggle-outlier" style="background:#ef4444;" onclick="s4_ToggleOutlier()">Remover Outlier Discrepante</button>
+                </div>
+                <div class="info-box mt-15" id="msg-s4" style="border-left-color:#ef4444;">
+                    <b>Regra de Ouro:</b> Sempre aplique a limpeza de dados (Data Cleansing do Módulo 1) antes de ajustar modelos de regressão!
+                </div>
+            </div>
+            <div class="col-right">
+                <svg class="chart-svg" id="svg-s4" viewBox="0 0 500 280"></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 5: CALCULADORA PREDITIVA ================= -->
+    <div class="slide" id="s5">
+        <div class="slide-header">
+            <h2>Calculadora Preditiva de Qualidade <span class="badge bg-green">Simulação Prática</span></h2>
+            <p>Utilize o modelo treinado para prever a dimensão da peça com base na temperatura ajustada no painel.</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <div class="data-panel">
+                    <label class="text-slate-dark text-lg" style="font-weight:bold; display:block; margin-bottom:8px;">Ajuste a Temperatura da Máquina ( X ):</label>
+                    
+                    <input type="range" min="150" max="220" value="185" id="slider-temp" oninput="s5_CalcularPredicao(this.value)"
+                           style="width: 100%; height: 12px; background: #e2e8f0; border-radius: 8px; cursor: pointer; margin-bottom: 12px; accent-color: #2563eb;">
+                    
+                    <div class="text-sm" style="display:flex; justify-content:space-between; font-weight:bold; color:#64748b;">
+                        <span>150 °C</span>
+                        <span class="text-blue text-xl" style="font-weight:bold;" id="txt-s5-xval">185 °C</span>
+                        <span>220 °C</span>
+                    </div>
+                </div>
+
+                <div class="data-panel" style="border-left: 8px solid #10b981; background: #f0fdf4;">
+                    <h3 class="text-green text-lg" style="font-weight:bold;">Resultado da Estimação ( \hat{Y} )</h3>
+                    <div style="font-size:32px; font-weight:bold; color:#1e293b; margin:10px 0;" id="txt-s5-yval">50.29 mm</div>
+                    <p class="text-sm no-margin" style="color:#475569;">Intervalo de Confiança (95%): <b id="txt-s5-ic">49.98 mm a 50.60 mm</b></p>
+                </div>
+
+                <div class="info-box" id="msg-s5">
+                    A linha azul central indica a estimativa pontual, enquanto a faixa sombreada azul representa a banda de incerteza da regressão.
+                </div>
+            </div>
+            <div class="col-right">
+                <svg class="chart-svg" id="svg-s5" viewBox="0 0 500 280"></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 6: PRÓXIMO PASSO ================= -->
+    <div class="slide" id="s6">
+        <div class="row">
+            <div class="col-left">
+                <h2 class="title-sm no-border">Próximo Módulo: <br><span class="text-blue">Gráfico de Pareto</span></h2>
+                <p class="text-lg mt-10">Até aqui vimos como as variáveis se relacionam e criamos modelos preditivos com a Regressão Linear.</p>
+                <p class="text-lg">Mas quando nos deparamos com múltiplos problemas no processo, por onde começamos a atuar?</p>
+                <ul class="list-none">
+                    <li>📊 <b>A Regra 80/20 (Princípio de Pareto)</b></li>
+                    <li>🎯 <b>Priorização de Problemas (Os Poucos Vitais)</b></li>
+                    <li>📈 <b>Construção da Curva Acumulada (Curva ABC)</b></li>
+                </ul>
+            </div>
+            <div class="col-right" style="justify-content: center; align-items: center; text-align: center;">
+                <div class="icon-huge">🎯</div>
+                <h3 class="text-xxl text-dark">Foco no que Importa!</h3>
+                <p class="text-lg mt-10">Vamos aprender a separar os "poucos vitais" dos "muitos triviais" para direcionar seus esforços de melhoria onde eles trarão o maior retorno e impacto na qualidade.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- RODAPÉ FIXO DE NAVEGAÇÃO -->
+<div class="footer">
+    <button class="btn-nav" id="btnPrev" onclick="mudarSlide(-1)">&#9664; Voltar</button>
+    <div class="progress" id="txtProgress">Slide 1 de 6</div>
+    <button class="btn-nav" id="btnNext" onclick="mudarSlide(1)">Avançar &#9654;</button>
+</div>
+
+<!-- Referência ao arquivo JS externo -->
+<script src="apresentacao6.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>

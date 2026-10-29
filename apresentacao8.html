@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento de Qualidade - Módulo 9: Diagrama de Ishikawa</title>
+    <!-- Referência exclusiva ao CSS global -->
+    <link rel="stylesheet" href="apresentacao.css">
+</head>
+<body>
+
+<div id="app">
+
+    <!-- CABEÇALHO DINÂMICO -->
+    <div class="header">
+        <div class="header-content">
+            <span>Aprendendo Qualidade</span>
+            <span class="header-subtitle">Treinamento desenvolvido por Márcio Barbosa Gonçalves</span>
+        </div>
+        <div class="header-content" style="text-align: right;">
+            <span>🐟 Diagrama de Ishikawa (Espinha de Peixe)</span>
+            <span class="header-subtitle">Módulo 9</span>
+        </div>
+    </div>
+
+    <!-- ÁREA DOS SLIDES -->
+    <div class="slide-container">
+
+        <!-- ================= SLIDE 1: INTRODUÇÃO AO ISHIKAWA ================= -->
+        <div class="slide active" id="s1">
+            <div class="slide-header">
+                <h2>A Origem da Causa Raiz <span class="badge bg-blue">Conceito Fundamental</span></h2>
+                <p>Quando um problema ocorre na produção ou nos processos, atacar o sintoma não resolve. O Diagrama de Ishikawa (ou Espinha de Peixe) estrutura a busca pela <b>Causa Raiz</b>.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="data-panel" style="border-left: 8px solid #2563eb;">
+                        <h3 class="text-blue" style="font-weight:bold;">1. A Cabeça do Peixe (O Efeito)</h3>
+                        <p class="text-md no-margin">Representa o problema exato que precisa ser resolvido (ex: <i>Alta taxa de refugo</i>, <i>Dimensão fora de tolerância</i>).</p>
+                    </div>
+                    <div class="data-panel mt-10" style="border-left: 8px solid #10b981;">
+                        <h3 class="text-green" style="font-weight:bold;">2. As Espinhas (As Causas)</h3>
+                        <p class="text-md no-margin">Ramificam-se em categorias estruturadas conhecidas universalmente como os <b>6Ms da Qualidade</b>.</p>
+                    </div>
+                </div>
+                <div class="col-right" style="justify-content: center; align-items: center; text-align: center;">
+                    <div class="icon-huge">🐟</div>
+                    <h3 class="text-xl text-dark">Estrutura Causa-Efeito</h3>
+                    <p class="text-lg">Organiza o brainstorming da equipe multidisciplinar, transformando opiniões subjetivas em hipóteses verificáveis.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 2: OS 6 MS DA QUALIDADE ================= -->
+        <div class="slide" id="s2">
+            <div class="slide-header">
+                <h2>Os 6 Ms da Qualidade <span class="badge bg-purple">Metodologia Padrão</span></h2>
+                <p>As ramificações principais do diagrama dividem-se em seis grandes pilares operacionais de qualquer processo produtivo ou administrativo.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="data-panel no-margin" style="padding: 12px; border-left: 6px solid #2563eb;">
+                            <b>1. Método:</b> Procedimentos, instruções de trabalho e regras do processo.
+                        </div>
+                        <div class="data-panel no-margin" style="padding: 12px; border-left: 6px solid #10b981;">
+                            <b>2. Máquina:</b> Equipamentos, ferramentas, gabaritos e desgastes mecânicos.
+                        </div>
+                        <div class="data-panel no-margin" style="padding: 12px; border-left: 6px solid #f59e0b;">
+                            <b>3. Material:</b> Matéria-prima, lotes de insumos e especificações de fornecedores.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="data-panel no-margin" style="padding: 12px; border-left: 6px solid #ef4444;">
+                            <b>4. Mão de Obra:</b> Treinamento, qualificação, fadiga e disciplina operacional.
+                        </div>
+                        <div class="data-panel no-margin" style="padding: 12px; border-left: 6px solid #8b5cf6;">
+                            <b>5. Medida:</b> Precisão de instrumentos, calibração e critérios de inspeção.
+                        </div>
+                        <div class="data-panel no-margin" style="padding: 12px; border-left: 6px solid #64748b;">
+                            <b>6. Meio Ambiente:</b> Temperatura, umidade, poeira e iluminação do posto.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 3: APLICAÇÃO PRÁTICA ================= -->
+        <div class="slide" id="s3">
+            <div class="slide-header">
+                <h2>Exemplo Prático: Eixo Fora de Medida <span class="badge bg-orange">Caso Industrial</span></h2>
+                <p>Veja como estruturar o Ishikawa para um problema real de usinagem onde o diâmetro do eixo apresentou desvio no Módulo 6.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="data-panel">
+                        <h3 class="text-blue" style="font-weight:bold;">Hipóteses Levantadas</h3>
+                        <ul class="list-disc" style="font-size: 18px; margin-bottom: 0;">
+                            <li><b>Máquina:</b> Folga no fuso e desgaste da ferramenta de corte.</li>
+                            <li><b>Medida:</b> Paquímetro descalibrado ou erro de leitura do operador.</li>
+                            <li><b>Material:</b> Dureza do aço oscilando entre lotes recebidos.</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <b>Dica de Ouro:</b> Use a técnica dos <b>5 Porquês</b> em cada espinha do Ishikawa para aprofundar a investigação até achar a causa raiz real.
+                    </div>
+                </div>
+                <div class="col-right" style="justify-content: center; align-items: center; text-align: center; background: #f1f5f9; border-radius: 10px; border: 2px dashed #cbd5e1; padding: 20px;">
+                    <div class="icon-huge">⚙️</div>
+                    <h3 class="text-xl text-dark">Conexão Sistêmica</h3>
+                    <p class="text-lg">O Ishikawa alimenta diretamente as ações corretivas que estabilizam as Cartas de Controle (CEP) estudadas anteriormente.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 4: PRÓXIMO PASSO ================= -->
+        <div class="slide" id="s4">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; padding-left: 20px;">
+                    <h2 class="title-sm no-border">Próximo Módulo: <br><span class="text-blue">Plano de Ação (5W2H)</span></h2>
+                    <p class="text-lg mt-10">Identificamos o problema com o Pareto e descobrimos a causa raiz com o Diagrama de Ishikawa.</p>
+                    <p class="text-lg">Agora, como estruturar a execução da melhoria de forma clara e objetiva?</p>
+                    <ul class="list-none">
+                        <li>📋 <b>O que será feito (What)</b></li>
+                        <li>👤 <b>Quem fará (Who) e Onde (Where)</b></li>
+                        <li>📅 <b>Quando (When) e Quanto custa (How Much)</b></li>
+                    </ul>
+                </div>
+                <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
+                    <div class="icon-huge">🚀</div>
+                    <h3 class="text-xxl text-dark">Rumo à Ação Eficaz!</h3>
+                    <p class="text-lg">Vamos aprender a planejar e implementar contramedidas sólidas para garantir que os problemas nunca mais retornem ao processo.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- RODAPÉ FIXO DE NAVEGAÇÃO -->
+    <div class="footer">
+        <button class="btn-nav" id="btnPrev" onclick="mudarSlide(-1)">&#9664; Voltar</button>
+        <div class="progress" id="txtProgress">Slide 1 de 4</div>
+        <button class="btn-nav" id="btnNext" onclick="mudarSlide(1)">Avançar &#9654;</button>
+    </div>
+
+</div>
+
+<!-- TOAST DE NOTIFICAÇÃO -->
+<div id="toast">Mensagem</div>
+
+<!-- Referência ao JS externo -->
+<script src="apresentacao8.js"></script>
+
+</body>
+</html>

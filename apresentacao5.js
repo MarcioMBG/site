@@ -5,12 +5,12 @@ function atualizarNavegacao() {
     document.getElementById('txtProgress').innerText = "Slide " + slideAtual + " de " + totalSlides;
     document.getElementById('btnPrev').disabled = false;
     document.getElementById('btnPrev').innerHTML = (slideAtual === 1) ? "&#9664; Módulo 5" : "&#9664; Voltar";
-    document.getElementById('btnNext').innerHTML = (slideAtual === totalSlides) ? "Finalizar Curso" : "Avançar &#9654;";
+    document.getElementById('btnNext').innerHTML = (slideAtual === totalSlides) ? "Módulo 7" : "Avançar &#9654;";
 }
 
 function mudarSlide(direcao) {
     if (direcao === 1 && slideAtual === totalSlides) { 
-        alert("Parabéns! Concluiu o curso 'Aprendendo Qualidade no VBA Excel'.");
+         window.location.href = 'apresentacao6.html';
         return; 
     }
     if (direcao === -1 && slideAtual === 1) { 

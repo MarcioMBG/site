@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendendo Qualidade No VBA Excel - Módulo 8: Correlação e Regressão Linear</title>
+    <!-- Referência exclusiva ao CSS global -->
+    <link rel="stylesheet" href="apresentacao.css">
+</head>
+<body>
+
+<div id="app">
+
+<!-- CABEÇALHO DINÂMICO -->
+<div class="header">
+    <div class="header-content">
+        <span>Aprendendo Qualidade</span>
+        <span class="header-subtitle">Treinamento desenvolvido por Márcio Barbosa Gonçalves</span>
+    </div>
+    <div class="header-content" style="text-align: right;">
+        <span>📊 Gráfico de Pareto (Regra 80/20)</span>
+        <span class="header-subtitle">Módulo 8</span>
+    </div>
+</div>
+
+<!-- ÁREA DOS SLIDES -->
+<div class="slide-container">
+
+    <!-- ================= SLIDE 1: INTRODUÇÃO AO PARETO ================= -->
+    <div class="slide active" id="s1">
+        <div class="slide-header">
+            <h2>O Princípio de Pareto (A Regra 80/20) <span class="badge bg-blue">Fundamentos</span></h2>
+            <p>Na gestão da qualidade e na resolução de problemas, os recursos são limitados. Precisamos separar os poucos vitais dos muitos triviais.</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <div class="data-panel" style="border-left: 8px solid #2563eb;">
+                    <h3 class="text-blue" style="font-weight:bold;">A Desproporção Universal</h3>
+                    <p class="text-md no-margin">Cerca de <b>80% dos problemas</b> decorrem de apenas <b>20% das causas</b>. Atacar os defeitos na ordem errada desperdiça tempo e capital operacional.</p>
+                </div>
+                <div class="data-panel mt-10" style="border-left: 8px solid #f59e0b;">
+                    <h3 class="text-orange" style="font-weight:bold;">O Objetivo do Gráfico</h3>
+                    <p class="text-md no-margin">Combinar um gráfico de barras (frequência de defeitos) com uma linha acumulada (porcentagem) para priorizar onde atuar primeiro.</p>
+                </div>
+                <div class="info-box" id="msg-s1">
+                    Clique ao lado para simular a priorização de falhas em uma linha de montagem e ver o impacto prático.
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="data-panel" style="text-align: center; padding: 30px 20px;">
+                    <div class="icon-huge" style="font-size: 80px; margin-bottom: 10px;">🎯</div>
+                    <h3 class="text-xl text-dark">Foco Cirúrgico no Processo</h3>
+                    <p class="text-md mt-10">Em vez de tentar resolver 10 problemas ao mesmo tempo com pouca eficácia, o Diagrama de Pareto aponta exatamente qual defeito elimina o grosso das perdas ao ser corrigido.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 2: TABELA DE FREQUÊNCIA ================= -->
+    <div class="slide" id="s2">
+        <div class="slide-header">
+            <h2>Levantamento e Ordenação de Dados <span class="badge bg-purple">Coleta de Não-Conformidades</span></h2>
+            <p>Para construir um Pareto, coletamos as ocorrências de falhas no período e as ordenamos da maior frequência para a menor.</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Defeito / Causa</th>
+                                <th>Ocorrências</th>
+                                <th>% Acumulada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align:left;">1. Desvio Dimensional</td>
+                                <td><b>45</b></td>
+                                <td>45%</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;">2. Rebarba Excessiva</td>
+                                <td><b>25</b></td>
+                                <td>70%</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;">3. Porosidade no Metal</td>
+                                <td><b>15</b></td>
+                                <td>85%</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;">4. Falha de Têmpera</td>
+                                <td><b>10</b></td>
+                                <td>95%</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left;">5. Riscos Superficiais</td>
+                                <td><b>5</b></td>
+                                <td>100%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="info-box mt-15">
+                    Note que apenas os dois primeiros itens (Desvio Dimensional e Rebarba) respondem por <b>70% de todos os problemas</b> do processo produtivo!
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="data-panel" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 class="text-blue" style="margin-bottom: 15px;">Regra Prática de Ordenação</h3>
+                    <p class="text-lg">Sempre agrupe causas menores em uma categoria chamada "Outros" se a frequência individual for irrelevante, mantendo o foco nas principais barras do gráfico.</p>
+                    <p class="text-lg mt-10">A curva acumulada (linha vermelha) é que define exatamente o corte dos 80%.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 3: CONSTRUÇÃO DO GRÁFICO ================= -->
+    <div class="slide" id="s3">
+        <div class="slide-header">
+            <h2>Construção Visual: Barras + Linha Acumulada <span class="badge bg-green">Análise Combinada</span></h2>
+            <p>O gráfico de Pareto utiliza eixo Y duplo: o esquerdo para a contagem absoluta de defeitos e o direito para a porcentagem acumulada (0 a 100%).</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <svg class="chart-svg" id="svg-s7-pareto" viewBox="0 0 500 280">
+                    <!-- Simulação gráfica do Pareto em SVG -->
+                    <rect x="50" y="80" width="60" height="150" fill="#2563eb" rx="4"/>
+                    <text x="80" y="70" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">45</text>
+                    <text x="80" y="250" text-anchor="middle" font-size="11" fill="#475569">Dimensão</text>
+
+                    <rect x="135" y="140" width="60" height="90" fill="#3b82f6" rx="4"/>
+                    <text x="165" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">25</text>
+                    <text x="165" y="250" text-anchor="middle" font-size="11" fill="#475569">Rebarba</text>
+
+                    <rect x="220" y="190" width="60" height="40" fill="#60a5fa" rx="4"/>
+                    <text x="250" y="180" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">15</text>
+                    <text x="250" y="250" text-anchor="middle" font-size="11" fill="#475569">Porosidade</text>
+
+                    <rect x="305" y="205" width="60" height="25" fill="#93c5fd" rx="4"/>
+                    <text x="335" y="195" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">10</text>
+                    <text x="335" y="250" text-anchor="middle" font-size="11" fill="#475569">Têmpera</text>
+
+                    <rect x="390" y="220" width="60" height="10" fill="#cbd5e1" rx="4"/>
+                    <text x="420" y="210" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">5</text>
+                    <text x="420" y="250" text-anchor="middle" font-size="11" fill="#475569">Outros</text>
+
+                    <!-- Linha de acúmulo -->
+                    <polyline points="80,150 165,100 250,70 335,45 420,30" fill="none" stroke="#ef4444" stroke-width="3"/>
+                    <circle cx="80" cy="150" r="4" fill="#ef4444"/>
+                    <circle cx="165" cy="100" r="4" fill="#ef4444"/>
+                    <circle cx="250" cy="70" r="4" fill="#ef4444"/>
+                    <circle cx="335" cy="45" r="4" fill="#ef4444"/>
+                    <circle cx="420" cy="30" r="4" fill="#ef4444"/>
+                </svg>
+                <div class="info-box">As barras decrescentes organizam visualmente a prioridade imediata de atuação na engenharia.</div>
+            </div>
+            <div class="col-right">
+                <div class="data-panel" style="border-left: 8px solid #10b981;">
+                    <h3 class="text-green">Linha de Corte dos 80%</h3>
+                    <p class="text-md mb-10">Trace uma linha horizontal a partir de 80% no eixo direito até cruzar a curva vermelha. Desça verticalmente: tudo o que estiver à esquerda são os <b>poucos vitais</b>.</p>
+                    <p class="text-md no-margin">Resolver apenas esses itens garante a maior eficiência com o menor custo de intervenção no processo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 4: APLICAÇÃO PRÁTICA ================= -->
+    <div class="slide" id="s4">
+        <div class="slide-header">
+            <h2>Do Gráfico para a Ação Corretiva <span class="badge bg-orange">Tomada de Decisão</span></h2>
+            <p>Identificar o problema com o Pareto é apenas o primeiro passo. A partir daí, direcionamos ferramentas específicas para encontrar a causa raiz.</p>
+        </div>
+        <div class="row">
+            <div class="col-left">
+                <div class="data-panel mb-15">
+                    <h3 class="text-blue">1. Isolamento do Sintoma</h3>
+                    <p class="text-md no-margin">O Pareto apontou que o <i>Desvio Dimensional</i> é o campeão de rejeições. Sabemos exatamente onde focar o plano de ação.</p>
+                </div>
+                <div class="data-panel">
+                    <h3 class="text-orange">2. Investigação de Causa Raiz</h3>
+                    <p class="text-md no-margin">Agora que sabemos <i>o que</i> está falhando, precisamos descobrir <b>por que</b> está falhando utilizando metodologias estruturadas.</p>
+                </div>
+            </div>
+            <div class="col-right">
+                <div class="info-box" style="border-left-color: #8b5cf6; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 class="text-purple" style="margin-bottom: 10px;">O Próximo Elo na Qualidade</h3>
+                    <p class="text-lg">Quando descobrimos qual é o problema principal no Gráfico de Pareto, o passo lógico seguinte na Engenharia da Qualidade é abrir um <b>Diagrama de Ishikawa</b> para destrinchar as causas em 6M (Máquina, Material, Método, Mão de Obra, Medida e Meio Ambiente).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SLIDE 5: PRÓXIMO MÓDULO ================= -->
+    <div class="slide" id="s5">
+        <div class="row">
+            <div class="col-left" style="justify-content: center; padding-left: 20px;">
+                <h2 class="title-sm no-border">Próximo Módulo: <br><span class="text-blue">Diagrama de Ishikawa</span></h2>
+                <p class="text-lg mt-10">Aprendemos a priorizar os problemas com o Gráfico de Pareto e separar o que realmente importa.</p>
+                <p class="text-lg">Mas como investigar metodicamente todas as possíveis causas de um defeito complexo na fábrica?</p>
+                <ul class="list-none">
+                    <li>🐟 <b>A Estrutura da Espinha de Peixe</b></li>
+                    <li>⚙️ <b>Os 6M da Qualidade Industrial</b></li>
+                    <li>🔍 <b>Brainstorming e Investigação de Causa Raiz</b></li>
+                </ul>
+            </div>
+            <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
+                <div class="icon-huge">🐟</div>
+                <h3 class="text-xxl text-dark">Investigação Profunda!</h3>
+                <p class="text-lg">Vamos estruturar o raciocínio lógico para conectar o sintoma descoberto no Pareto até a sua causa raiz definitiva.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- RODAPÉ FIXO DE NAVEGAÇÃO -->
+<div class="footer">
+    <button class="btn-nav" id="btnPrev" onclick="mudarSlide(-1)">&#9664; Voltar</button>
+    <div class="progress" id="txtProgress">Slide 1 de 5</div>
+    <button class="btn-nav" id="btnNext" onclick="mudarSlide(1)">Avançar &#9654;</button>
+</div>
+
+<!-- Referência ao arquivo JS externo -->
+<script src="apresentacao7.js"></script>
+<script src="analytics.js"></script>
+</body>
+</html>
