@@ -8,13 +8,9 @@ function atualizarNavegacao() {
     document.getElementById('btnPrev').innerHTML = (slideAtual === 1) ? "&#9664; Módulo 6" : "&#9664; Voltar";
     document.getElementById('btnNext').innerHTML = (slideAtual === totalSlides) ? "Módulo 8 " : "Avançar &#9654;";
 }
-
 function mudarSlide(direcao) {
     if (direcao === 1 && slideAtual === totalSlides) { 
-        exibirToast("🎓 Módulo 7 Concluído! Redirecionando para o Módulo 8...");
-        setTimeout(function() {
-            window.location.href = 'apresentacao7.html';
-        }, 1500);
+        window.location.href = 'apresentacao7.html'; // Transição instantânea para o Módulo 8
         return; 
     }
     if (direcao === -1 && slideAtual === 1) { 
@@ -36,13 +32,6 @@ function mudarSlide(direcao) {
     if(slideAtual === 5) s5_CalcularPredicao(document.getElementById('slider-temp').value);
 }
 
-function exibirToast(msg) {
-    var toast = document.getElementById('toast');
-    if (!toast) return;
-    toast.innerText = msg;
-    toast.classList.add('show');
-    setTimeout(function() { toast.classList.remove('show'); }, 3000);
-}
 
 /* ================= FUNÇÕES ESTATÍSTICAS UTILITÁRIAS ================= */
 function calcEstaticaLinear(data) {
