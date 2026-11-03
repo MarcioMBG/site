@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento de Qualidade - Módulo 10: Fluxograma</title>
+    <link rel="stylesheet" href="apresentacao.css">
+</head>
+<body>
+
+<div id="app">
+    <!-- CABEÇALHO DINÂMICO -->
+    <div class="header">
+        <div class="header-content">
+            <span>Aprendendo Qualidade</span>
+            <span class="header-subtitle">Treinamento desenvolvido por Márcio Barbosa Gonçalves</span>
+        </div>
+        <div class="header-content" style="text-align: right;">
+            <span>🗺️ Fluxograma de Processo</span>
+            <span class="header-subtitle">Módulo 10</span>
+        </div>
+    </div>
+
+    <!-- ÁREA DOS SLIDES -->
+    <div class="slide-container">
+
+        <!-- ================= SLIDE 1: INTRODUÇÃO ================= -->
+        <div class="slide active" id="s1">
+            <div class="slide-header">
+                <h2>Mapeando o Caminho <span class="badge bg-blue">Conceito Visual</span></h2>
+                <p>O Fluxograma é a representação gráfica da sequência de etapas de um processo. Ele transforma rotinas complexas em um mapa visual claro para toda a equipe.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <div class="data-panel" style="border-left: 8px solid #2563eb;">
+                        <h3 class="text-blue" style="font-weight:bold;">Por que usar?</h3>
+                        <ul class="list-disc" style="font-size: 18px; margin-bottom: 0;">
+                            <li>Identifica gargalos e retrabalhos ocultos.</li>
+                            <li>Padroniza a operação (todos fazem da mesma forma).</li>
+                            <li>Facilita o treinamento de novos colaboradores.</li>
+                        </ul>
+                    </div>
+                    <div class="info-box mt-10">
+                        <b>Integração:</b> Se o diagrama de Ishikawa identifica o problema, o fluxograma ajuda a localizar exatamente <i>onde</i> no processo esse problema ocorreu.
+                    </div>
+                </div>
+                <div class="col-right" style="justify-content: center; align-items: center; text-align: center;">
+                    <div class="icon-huge" style="font-size: 100px;">🛣️</div>
+                    <h3 class="text-xl text-dark">O Raio-X da Produção</h3>
+                    <p class="text-lg">Não se pode melhorar aquilo que não se compreende. Desenhar o fluxo é o primeiro passo para a melhoria contínua.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 2: SÍMBOLOS ================= -->
+        <div class="slide" id="s2">
+            <div class="slide-header">
+                <h2>A Linguagem Universal <span class="badge bg-purple">Padronização ANSI</span></h2>
+                <p>Os fluxogramas utilizam formas geométricas padronizadas. Cada símbolo possui um significado específico, garantindo que qualquer pessoa entenda o mapa.</p>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    <!-- 1. Início / Fim -->
+                    <div class="symbol-box">
+                        <div class="symbol-icon">
+                            <svg width="60" height="30"><rect x="5" y="0" width="50" height="30" rx="15" fill="#dcfce7" stroke="#10b981" stroke-width="2"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="symbol-title text-green">Início / Fim</h3>
+                            <p class="text-sm no-margin">Marca os limites extremos do processo.</p>
+                        </div>
+                    </div>
+                    <!-- 2. Processo / Operação -->
+                    <div class="symbol-box">
+                        <div class="symbol-icon">
+                            <svg width="60" height="30"><rect x="5" y="0" width="50" height="30" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="symbol-title text-blue">Processo / Operação</h3>
+                            <p class="text-sm no-margin">Indica uma ação, tarefa ou atividade realizada.</p>
+                        </div>
+                    </div>
+                    <!-- 3. Documento (NOVO) -->
+                    <div class="symbol-box">
+                        <div class="symbol-icon">
+                            <svg width="60" height="30"><path d="M 10 2 L 50 2 L 50 20 Q 40 28 30 20 T 10 20 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="symbol-title text-teal">Documento</h3>
+                            <p class="text-sm no-margin">Geração de relatórios, laudos ou instruções (POP).</p>
+                        </div>
+                    </div>
+                    <!-- 4. Espera / Atraso (NOVO) -->
+                    <div class="symbol-box">
+                        <div class="symbol-icon">
+                            <svg width="60" height="30"><path d="M 16 2 L 31 2 A 13 13 0 0 1 31 28 L 16 28 Z" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="symbol-title text-red">Espera / Atraso</h3>
+                            <p class="text-sm no-margin">Tempo de cura, secagem ou aguardando inspeção.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-right">
+                    <!-- 5. Decisão -->
+                    <div class="symbol-box">
+                        <div class="symbol-icon">
+                            <svg width="50" height="40"><polygon points="25,2 48,20 25,38 2,20" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="symbol-title text-orange">Decisão</h3>
+                            <p class="text-sm no-margin">Ponto de análise que gera ramificações (Sim/Não).</p>
+                        </div>
+                    </div>
+                    <!-- 6. Dados / Entrada e Saída (NOVO) -->
+                    <div class="symbol-box">
+                        <div class="symbol-icon">
+                            <svg width="60" height="30"><polygon points="20,2 55,2 45,28 10,28" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="symbol-title text-purple-light">Entrada / Saída</h3>
+                            <p class="text-sm no-margin">Recebimento de matéria-prima ou dados no sistema.</p>
+                        </div>
+                    </div>
+                    <!-- 7. Conector (NOVO) -->
+                    <div class="symbol-box">
+                        <div class="symbol-icon">
+                            <svg width="60" height="30"><circle cx="30" cy="15" r="13" fill="#fce7f3" stroke="#be185d" stroke-width="2"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="symbol-title text-pink">Conector</h3>
+                            <p class="text-sm no-margin">Pula para outra etapa sem cruzar linhas visuais.</p>
+                        </div>
+                    </div>
+                    <!-- 8. Linha de Fluxo -->
+                    <div class="symbol-box">
+                        <div class="symbol-icon">
+                            <svg width="60" height="20"><line x1="5" y1="10" x2="50" y2="10" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="symbol-title text-slate-dark">Linha de Fluxo</h3>
+                            <p class="text-sm no-margin">Mostra a direção e a sequência lógica das etapas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 3: EXEMPLO PRÁTICO ================= -->
+        <div class="slide" id="s3">
+            <div class="slide-header">
+                <h2>Exemplo: Inspeção de Qualidade <span class="badge bg-orange">Caso Prático</span></h2>
+                <p>Abaixo, um mapa de decisão simples para aprovação de peças usinadas após medição.</p>
+            </div>
+            
+            <div class="svg-container flow-svg">
+                <svg viewBox="0 0 800 320" style="width: 100%; height: 100%;">
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" />
+                        </marker>
+                    </defs>
+
+                    <!-- Início -->
+                    <g>
+                        <rect class="flow-shape flow-start-end" x="50" y="140" width="100" height="40" rx="20" />
+                        <text class="flow-text" x="100" y="165">Início</text>
+                        <line class="flow-line" x1="150" y1="160" x2="190" y2="160" />
+                    </g>
+
+                    <!-- Operação 1 -->
+                    <g>
+                        <rect class="flow-shape" x="200" y="130" width="120" height="60" rx="4" />
+                        <text class="flow-text" x="260" y="155">Medir Eixo</text>
+                        <text class="flow-text" x="260" y="175">(Paquímetro)</text>
+                        <line class="flow-line" x1="320" y1="160" x2="360" y2="160" />
+                    </g>
+
+                    <!-- Decisão -->
+                    <g>
+                        <polygon class="flow-shape flow-decision" points="430,110 500,160 430,210 360,160" />
+                        <text class="flow-text" x="430" y="155">Dentro da</text>
+                        <text class="flow-text" x="430" y="175">Tolerância?</text>
+                        
+                        <!-- Caminho Sim -->
+                        <line class="flow-line" x1="500" y1="160" x2="570" y2="160" />
+                        <text class="flow-label yes" x="525" y="150">SIM</text>
+
+                        <!-- Caminho Não -->
+                        <line class="flow-line" x1="430" y1="210" x2="430" y2="250" />
+                        <line class="flow-line" x1="430" y1="250" x2="570" y2="250" />
+                        <text class="flow-label" x="440" y="240">NÃO</text>
+                    </g>
+
+                    <!-- Fim (Aprovado) -->
+                    <g>
+                        <rect class="flow-shape flow-start-end" x="580" y="140" width="120" height="40" rx="20" />
+                        <text class="flow-text" x="640" y="165">Aprovar Lote</text>
+                    </g>
+
+                    <!-- Fim (Refugo) -->
+                    <g>
+                        <rect class="flow-shape" x="580" y="230" width="120" height="40" rx="4" fill="#fee2e2" stroke="#ef4444" />
+                        <text class="flow-text" x="640" y="255">Segregar / Refugo</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 4: CONCLUSÃO ================= -->
+        <div class="slide" id="s4">
+            <div class="row">
+                <div class="col-left" style="justify-content: center; padding-left: 20px;">
+                    <h2 class="title-sm no-border">Você Dominou as <br><span class="text-blue">Ferramentas da Qualidade</span></h2>
+                    <p class="text-lg mt-10">De Histogramas e CEP ao Ishikawa e Fluxogramas, você tem os dados e o mapa.</p>
+                    <ul class="list-none">
+                        <li>🎯 <b>Controle seus processos.</b></li>
+                        <li>🔍 <b>Investigue as anomalias.</b></li>
+                        <li>📈 <b>Padronize o sucesso.</b></li>
+                    </ul>
+                </div>
+                <div class="col-right" style="align-items: center; justify-content: center; text-align: center;">
+                    <div class="icon-huge">🏆</div>
+                    <h3 class="text-xxl text-dark">Treinamento Concluído!</h3>
+                    <p class="text-lg">Aplique esses conceitos e potencialize as análises do setor da Qualidade.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ FIXO -->
+    <div class="footer">
+        <button class="btn-nav" id="btnPrev" onclick="mudarSlide(-1)">&#9664; Voltar</button>
+        <div class="progress" id="txtProgress">Slide 1 de 4</div>
+        <button class="btn-nav" id="btnNext" onclick="mudarSlide(1)">Avançar &#9654;</button>
+    </div>
+
+    <div id="toast">Mensagem</div>
+</div>
+
+<script src="apresentacao9.js"></script>
+</body>
+</html>
